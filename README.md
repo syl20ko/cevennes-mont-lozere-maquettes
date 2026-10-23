@@ -1,6 +1,6 @@
 # Maquettes de page d'accueil, refonte cevennes-mont-lozere.fr sur Symfony
 
-Trois maquettes HTML autonomes, créées le 23 octobre 2026, pour proposer à la Communauté de communes des Cévennes au Mont Lozère la refonte de son site Joomla (ancien, piraté à plusieurs reprises, contrôle ARCOM sur l'accessibilité) sur Symfony.
+Cinq maquettes HTML autonomes, créées le 23 octobre 2026 (4 et 5 ajoutées le même jour à la demande de Sylvain), pour proposer à la Communauté de communes des Cévennes au Mont Lozère la refonte de son site Joomla (ancien, piraté à plusieurs reprises, contrôle ARCOM sur l'accessibilité) sur Symfony.
 
 (c) Sylvain Caron 2026. Proposition non contractuelle. Reproduction et réutilisation interdites sans accord écrit. Textes : site actuel de la communauté de communes. Photos : Émilie Reydon.
 
@@ -10,6 +10,8 @@ Trois maquettes HTML autonomes, créées le 23 octobre 2026, pour proposer à la
 - `maquette-1-panorama.html` : institutionnelle et moderne, photo des crêtes entière en tête, barre d'accès rapides, France services, carte interactive.
 - `maquette-2-bancels.html` : éditoriale, esprit journal de pays, papier crème, sommaire des services 01 à 10, Le Vent des Bancels en vitrine.
 - `maquette-3-guichet.html` : pratique et accessible, « que souhaitez-vous faire ? », tâches, services par commune, tableau des horaires France services, boutons A+ et Contraste.
+- `maquette-4-lauzes.html` : mosaïque de tuiles (bento), granite et vert, chiffres forts par service.
+- `maquette-5-sentier.html` : parcours de randonnée en six étapes, tracé en pointillés, services en panneaux de balisage, bleus de brume.
 
 Paramètres d'adresse : `?nobar=1` masque la barre jaune (captures), `?static=1` affiche tout sans animation, `?contraste=1` ouvre en contraste renforcé.
 
@@ -27,7 +29,7 @@ Paramètres d'adresse : `?nobar=1` masque la barre jaune (captures), `?static=1`
 
 ## Contrôles faits
 
-- Captures 375 et 1440 px des trois maquettes et de l'index, mode contraste vérifié.
+- Captures 375 et 1440 px des cinq maquettes, aucun débordement horizontal à 375 px et de l'index, mode contraste vérifié.
 - Contrastes de texte calculés : tous au moins 4,5:1 pour le texte courant.
 - Aucune photo recadrée (largeur 100 %, hauteur auto, ou hauteur fixe et largeur auto).
 - Aucun tiret long.

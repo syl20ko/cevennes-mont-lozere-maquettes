@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquette 5 Sentier : Communauté de communes des Cévennes au Mont Lozère</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Sylvain Caron">
+<meta name="copyright" content="Maquette (c) Sylvain Caron 2026. Proposition non contractuelle. Reproduction et réutilisation interdites sans accord écrit.">
+<!-- Maquette page d'accueil, refonte Symfony du site cevennes-mont-lozere.fr. (c) Sylvain Caron 2026. Proposition non contractuelle. -->
+<link rel="stylesheet" href="assets/barre.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nuit:#1c3557; --nuit-d:#13253f; --brume:#e8eef7; --ciel:#c3d3ea; --blanc:#fff;
+  --vert:#94c122; --vert-d:#4f6b0c; --vert-l:#eef5dc; --bois:#f2e6cf;
+  --encre:#16233a; --gris:#4f5d70; --ligne:#d2dbe8;
+  --serif:'DM Serif Display',Georgia,serif; --sans:'Karla',system-ui,sans-serif;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--encre);background:var(--brume);line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:var(--nuit)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.005em}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.ico{width:1.2em;height:1.2em;flex:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.evitement{position:absolute;left:12px;top:-60px;background:var(--vert);color:var(--encre);padding:.6rem 1rem;border-radius:8px;font-weight:700;z-index:300;text-decoration:none}
+.evitement:focus{top:12px}
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--vert);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:999px;font-weight:700;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .2s,background .2s;font-size:1rem}
+.btn:hover{transform:translateY(-2px)}
+.btn-vert{background:var(--vert);color:var(--encre)}
+.btn-ligne{border-color:rgba(255,255,255,.5);color:#fff}
+.btn-ligne:hover{background:rgba(255,255,255,.12)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* entete et ouverture */
+.ouverture{background:linear-gradient(180deg,var(--nuit-d) 0%,var(--nuit) 55%,#3d5f8f 100%);color:#fff;position:relative;overflow:hidden}
+.ouverture::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:120px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 70 L120 40 L230 75 L360 25 L470 60 L600 15 L720 55 L850 30 L980 70 L1100 35 L1230 65 L1340 40 L1440 60 L1440 120 L0 120Z' fill='%23e8eef7'/%3E%3C/svg%3E") bottom/100% 100% no-repeat}
+.entete .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:18px 0}
+.logo{background:#fff;border-radius:14px;padding:6px 12px;display:inline-block}
+.logo img{height:54px;width:auto}
+.nav ul{list-style:none;display:flex;gap:4px;align-items:center}
+.nav a{color:#fff;text-decoration:none;font-weight:600;padding:.55rem .9rem;border-radius:999px;display:block;transition:background .2s}
+.nav a:hover{background:rgba(255,255,255,.12)}
+.nav .cta a{background:var(--vert);color:var(--encre)}
+.burger{display:none;width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:transparent;color:#fff;place-items:center;cursor:pointer}
+.ouv{display:grid;grid-template-columns:1.15fr .85fr;gap:3.5rem;align-items:center;padding:3rem 0 8.5rem;position:relative;z-index:1}
+.ouv .kick{display:inline-flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.82rem;color:#d7e6a6}
+.ouv .kick svg{width:20px;height:20px;color:var(--vert)}
+.ouv h1{font-size:clamp(2.6rem,5.4vw,4.8rem);margin:1rem 0 1.2rem}
+.ouv h1 em{color:var(--vert);font-style:italic}
+.ouv p.lead{color:#d8e3f2;font-size:1.15rem;max-width:48ch}
+.ouv .actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}
+.ouv .reperes{display:flex;gap:2rem;margin-top:2.4rem}
+.ouv .reperes b{font-family:var(--serif);font-size:2.4rem;font-weight:400;display:block;line-height:1}
+.ouv .reperes span{color:#c3d3ea;font-size:.92rem}
+.portrait{position:relative;justify-self:end;width:min(400px,100%)}
+.portrait img{width:100%;height:auto;border-radius:22px;box-shadow:0 40px 70px -30px rgba(0,0,0,.7)}
+.portrait figcaption{position:absolute;left:-28px;bottom:36px;background:#fff;color:var(--encre);padding:.8rem 1rem;border-radius:14px;box-shadow:0 20px 40px -20px rgba(0,0,0,.5);font-size:.9rem;line-height:1.35}
+.portrait figcaption b{display:block;font-family:var(--serif);font-weight:400;font-size:1.15rem}
+
+/* le sentier : trace en pointilles a gauche des etapes */
+.parcours{position:relative}
+.parcours::before{content:"";position:absolute;left:max(20px,calc((100vw - 1180px)/2));top:0;bottom:0;width:60px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='400' viewBox='0 0 60 400'%3E%3Cpath d='M30 0 C 55 60, 5 140, 30 200 S 55 340, 30 400' fill='none' stroke='%231c3557' stroke-width='3' stroke-dasharray='2 10' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E") repeat-y;pointer-events:none}
+.etape{padding:4.5rem 0 1rem;position:relative}
+.etape .wrap{padding-left:96px}
+.borne{position:absolute;left:max(20px,calc((100vw - 1180px)/2));width:60px;display:grid;place-items:center}
+.borne span{width:48px;height:48px;border-radius:50%;background:var(--nuit);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:1.3rem;box-shadow:0 0 0 6px var(--brume)}
+.etape-tete{margin-bottom:2rem}
+.etape-tete small{display:block;font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.8rem;color:var(--vert-d);margin-bottom:.4rem}
+.etape-tete h2{font-size:clamp(2rem,3.8vw,3rem);color:var(--nuit)}
+.etape-tete p{color:var(--gris);max-width:58ch;margin-top:.5rem}
+
+/* panneaux de randonnee */
+.panneaux{display:grid;grid-template-columns:1fr 1fr;gap:14px 26px}
+.panneau{position:relative;display:flex;align-items:center;gap:1rem;background:var(--bois);color:var(--encre);text-decoration:none;padding:1.05rem 3.6rem 1.05rem 1.2rem;clip-path:polygon(0 0,calc(100% - 34px) 0,100% 50%,calc(100% - 34px) 100%,0 100%);border-radius:6px 0 0 6px;transition:transform .25s,background .25s;box-shadow:inset 0 -3px 0 rgba(0,0,0,.08)}
+.panneau:nth-child(even){transform:translateX(26px)}
+.panneau:hover{background:var(--vert);transform:translateX(8px)}
+.panneau:nth-child(even):hover{transform:translateX(34px)}
+.panneau .pic{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--nuit);flex:none}
+.panneau .pic .ico{width:22px;height:22px}
+.panneau b{display:block;font-size:1.12rem;font-weight:800}
+.panneau small{display:block;color:#5a4f3c;font-size:.92rem;line-height:1.35}
+.panneau:hover small{color:#2a3a07}
+.panneau.masque{opacity:.25}
+.recherche{display:flex;background:#fff;border-radius:999px;padding:6px;max-width:560px;margin-bottom:1.8rem;box-shadow:0 10px 30px -18px rgba(28,53,87,.5)}
+.recherche label{display:flex;align-items:center;gap:.6rem;flex:1;padding:0 .9rem;color:var(--gris)}
+.recherche input{border:0;outline:0;font:inherit;width:100%;padding:.7rem 0;background:transparent;color:var(--encre)}
+.recherche button{border:0}
+
+/* quotidien en 3 colonnes */
+.trois{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.carnet{background:#fff;border-radius:var(--r);padding:1.6rem;border-top:5px solid var(--vert)}
+.carnet:nth-child(2){border-top-color:var(--nuit)}
+.carnet:nth-child(3){border-top-color:#6d8fbf}
+.carnet h3{font-size:1.6rem;color:var(--nuit);display:flex;gap:.6rem;align-items:center}
+.carnet h3 .ico{color:var(--vert-d);width:26px;height:26px}
+.carnet ul{list-style:none;margin:1rem 0 1.2rem;display:grid;gap:.6rem}
+.carnet li{padding-left:1.4rem;position:relative;color:var(--gris);font-size:.98rem;line-height:1.45}
+.carnet li::before{content:"";position:absolute;left:0;top:.5em;width:9px;height:9px;border-radius:50%;border:2px solid var(--vert-d)}
+.carnet li b{color:var(--encre)}
+.lien{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;color:var(--nuit);text-decoration:none;border-bottom:2px solid var(--vert)}
+
+/* actualites */
+.actus{display:grid;grid-template-columns:1fr 1fr .9fr;gap:1.2rem;align-items:start}
+.actu{background:#fff;border-radius:var(--r);overflow:hidden;text-decoration:none;color:var(--encre);transition:transform .25s,box-shadow .25s}
+.actu:hover{transform:translateY(-4px);box-shadow:0 22px 40px -26px rgba(28,53,87,.6)}
+.actu .vis{background:var(--ciel);padding:14px}
+.actu .vis img{width:100%;height:auto;max-height:300px;object-fit:contain}
+.actu .txt{padding:1.2rem 1.4rem 1.5rem}
+.actu small{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;color:var(--vert-d)}
+.actu h3{font-size:1.45rem;margin:.3rem 0 .4rem;color:var(--nuit)}
+.actu p{color:var(--gris);font-size:.98rem}
+.conseil{background:var(--nuit);color:#fff;border-radius:var(--r);padding:1.6rem}
+.conseil h3{font-size:1.6rem}
+.conseil p{color:#c3d3ea;font-size:.98rem;margin:.4rem 0 1rem}
+.dates{display:grid;gap:.5rem;margin-bottom:1.2rem}
+.dates span{display:flex;align-items:center;gap:.7rem;font-weight:700}
+.dates span::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--vert)}
+.conseil ul{list-style:none}
+.conseil a{display:flex;justify-content:space-between;align-items:center;color:#fff;text-decoration:none;font-weight:600;padding:.6rem 0;border-top:1px solid rgba(255,255,255,.15)}
+.conseil a:hover{color:var(--vert)}
+
+/* territoire */
+.terr{background:var(--nuit);color:#fff;border-radius:28px;padding:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;align-items:center}
+.terr .choix label{display:block;font-weight:700;margin-bottom:.4rem;color:#d7e6a6}
+.terr select{width:100%;font:inherit;padding:.85rem 1rem;border-radius:12px;border:0;background:#fff;color:var(--encre);cursor:pointer;min-height:52px}
+.fiche{margin-top:1.4rem}
+.fiche-nom{display:block;font-family:var(--serif);font-size:1.9rem;font-weight:400;margin-bottom:.8rem}
+.fiche-liste{list-style:none;display:grid;gap:.7rem}
+.fiche-liste li{color:#d8e3f2;font-size:.96rem;line-height:1.4;padding-left:.9rem;border-left:3px solid var(--vert)}
+.fiche-liste i{display:block;font-style:normal;font-weight:800;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.fiche-vide{color:#c3d3ea}
+.carte-svg{width:100%;height:auto;max-height:480px}
+.commune{fill:#2c4a74;stroke:#8fb0dd;stroke-width:2;cursor:pointer;transition:fill .2s}
+.commune.a-services{fill:#3d6297}
+.commune:hover,.commune.active{fill:var(--vert);stroke:#fff}
+.commune:focus-visible{outline:none;stroke:#fff;stroke-width:5}
+.terr .chiffres{display:flex;gap:1.8rem;margin-top:1.6rem}
+.terr .chiffres b{font-family:var(--serif);font-weight:400;font-size:2.2rem;display:block;line-height:1}
+.terr .chiffres span{color:#c3d3ea;font-size:.9rem}
+
+/* kiosque */
+.kiosque{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.kiosque a{text-decoration:none;color:var(--encre);background:#fff;border-radius:var(--r);padding:1.4rem;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform .25s}
+.kiosque a:hover{transform:translateY(-4px)}
+.kiosque img{width:72%;height:auto;box-shadow:0 18px 28px -14px rgba(0,0,0,.45)}
+.kiosque b{font-family:var(--serif);font-weight:400;font-size:1.25rem;margin-top:1rem;color:var(--nuit)}
+.kiosque small{color:var(--gris)}
+
+/* galerie */
+.galerie{columns:3;column-gap:1rem}
+.galerie figure{break-inside:avoid;margin-bottom:1rem;background:#fff;padding:10px;border-radius:14px}
+.galerie img{width:100%;height:auto;border-radius:8px}
+.galerie figcaption{font-family:var(--serif);font-style:italic;color:var(--gris);padding:.5rem .2rem 0;font-size:1rem}
+
+/* arrivee */
+.arrivee{margin-top:4rem;background:var(--nuit-d);color:#c3d3ea;position:relative;padding:6rem 0 2rem}
+.arrivee::before{content:"";position:absolute;left:0;right:0;top:-1px;height:90px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L1440 0 L1440 40 L1320 70 L1200 30 L1060 65 L930 25 L800 60 L660 20 L520 55 L380 30 L250 70 L120 35 L0 60Z' fill='%23e8eef7'/%3E%3C/svg%3E") top/100% 100% no-repeat}
+.partenaires{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;background:#fff;border-radius:var(--r);padding:1.4rem 1.8rem;margin-bottom:3rem}
+.partenaires h2{font-size:1.5rem;color:var(--nuit)}
+.logos{display:flex;gap:2.2rem;flex-wrap:wrap;align-items:center}
+.logos img{height:54px;width:auto}
+.cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2.2rem;font-size:.96rem}
+.cols .nom{font-family:var(--serif);font-size:1.7rem;color:#fff;line-height:1.1;margin-bottom:1rem}
+.cols h3{font-family:var(--sans);color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:.8rem}
+.cols ul{list-style:none;display:grid;gap:.45rem}
+.cols a{color:#e1e9f5;text-decoration:none}
+.cols a:hover{color:var(--vert)}
+.cols .contact li{display:flex;gap:.5rem}
+.cols .contact .ico{color:var(--vert);width:17px;height:17px;margin-top:.25rem}
+.bas{border-top:1px solid rgba(255,255,255,.14);margin-top:2.4rem;padding-top:1.2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.86rem;color:#9fb2cf}
+
+@media(max-width:1060px){
+  .ouv,.terr{grid-template-columns:1fr}
+  .portrait{justify-self:start;max-width:340px}
+  .trois,.actus{grid-template-columns:1fr 1fr}
+  .conseil{grid-column:1/-1}
+  .cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .nav{display:none;position:absolute;left:20px;right:20px;top:90px;background:var(--nuit-d);border-radius:var(--r);padding:12px;z-index:50}
+  .nav.open{display:block}
+  .nav ul{flex-direction:column;align-items:stretch}
+  .entete{position:relative}
+  .burger{display:grid}
+  .panneaux{grid-template-columns:1fr}
+  .panneau:nth-child(even){transform:none}
+  .panneau:nth-child(even):hover{transform:translateX(8px)}
+}
+@media(max-width:640px){
+  body{font-size:17px}
+  .logo img{height:44px}
+  .ouv{padding:1.5rem 0 7rem;gap:2rem}
+  .portrait figcaption{left:12px}
+  .parcours::before{left:4px;width:36px;background-size:36px 240px}
+  .borne{left:4px;width:36px}
+  .borne span{width:34px;height:34px;font-size:1rem;box-shadow:0 0 0 4px var(--brume)}
+  .etape .wrap{padding-left:28px;width:calc(100% - 24px)}
+  .trois,.actus,.kiosque{grid-template-columns:1fr}
+  .kiosque img{width:50%}
+  .terr{padding:1.4rem;border-radius:20px}
+  .galerie{columns:2}
+  .cols{grid-template-columns:1fr}
+  .recherche button span{display:none}
+}
+</style>
+</head>
+<body>
+<!--ICONES--><svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-fleche" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-loupe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-tel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+<symbol id="i-lieu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 3v8M16 3v8M7 18v3M17 18v3"/><circle cx="8" cy="14.5" r=".6" fill="currentColor"/><circle cx="16" cy="14.5" r=".6" fill="currentColor"/></symbol>
+<symbol id="i-mairie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 18v-7M9.5 18v-7M14.5 18v-7M19 18v-7M12 3l9 5H3z"/></symbol>
+<symbol id="i-enfant" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9 14.5s1 1.5 3 1.5 3-1.5 3-1.5"/><path d="M9 9.5h.01M15 9.5h.01"/><path d="M12 2.5c-1.5 1.5-1 3 .5 3"/></symbol>
+<symbol id="i-sante" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/><path d="M3.5 12H9l1-2 2 4.5 2-6 1.5 3.5h5"/></symbol>
+<symbol id="i-dechets" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></symbol>
+<symbol id="i-maison" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+<symbol id="i-livre" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+<symbol id="i-assos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+<symbol id="i-agenda" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol>
+<symbol id="i-emploi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/></symbol>
+<symbol id="i-feuille" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></symbol>
+<symbol id="i-montagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></symbol>
+<symbol id="i-horloge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-plan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="i-externe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+<symbol id="i-coeur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
+<symbol id="i-boussole" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></symbol>
+<symbol id="i-texte" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></symbol>
+<symbol id="i-contraste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/></symbol>
+</svg>
+<!--/ICONES-->
+<!--BARRE--><div class="barre-maq" role="navigation" aria-label="Navigation entre les maquettes"><a class="retour" href="index.html">&#8592; <span class="mot">Voir les</span> 5 visuels</a><div class="onglets"><a href="maquette-1-panorama.html"><b>1</b><span>Panorama</span></a><a href="maquette-2-bancels.html"><b>2</b><span>Bancels</span></a><a href="maquette-3-guichet.html"><b>3</b><span>Guichet</span></a><a href="maquette-4-lauzes.html"><b>4</b><span>Lauzes</span></a><a href="maquette-5-sentier.html" class="actif" aria-current="page"><b>5</b><span>Sentier</span></a></div><div class="fleches"><a href="maquette-4-lauzes.html" title="Maquette précédente" aria-label="Maquette précédente">&#8249;</a><a href="maquette-1-panorama.html" title="Maquette suivante" aria-label="Maquette suivante">&#8250;</a></div></div><!--/BARRE-->
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<div class="ouverture">
+  <header class="entete">
+    <div class="wrap">
+      <a class="logo" href="#" aria-label="Accueil"><img src="assets/img/logo.png" alt="Communauté de communes des Cévennes au Mont Lozère" width="280" height="150"></a>
+      <nav class="nav" aria-label="Menu principal">
+        <ul><li><a href="#">La communauté</a></li><li><a href="#etape-4">Territoire</a></li><li><a href="#etape-1">Services</a></li><li><a href="#">Environnement</a></li><li><a href="#etape-3">Actualités</a></li><li class="cta"><a href="#">Contact</a></li></ul>
+      </nav>
+      <button class="burger" aria-expanded="false" aria-label="Ouvrir le menu"><svg class="ico"><use href="#i-menu"/></svg></button>
+    </div>
+  </header>
+  <div class="wrap ouv">
+    <div class="reveal">
+      <span class="kick"><svg class="ico"><use href="#i-montagne"/></svg>Communauté de communes des Cévennes au Mont Lozère</span>
+      <h1>Des vallées cévenoles <em>au Mont Lozère</em></h1>
+      <p class="lead">Dix-neuf communes et les services qui les relient : démarches, transports, petite enfance, santé, déchets, logement. Suivez le sentier.</p>
+      <div class="actions"><a class="btn btn-vert" href="#etape-1">Trouver un service <svg class="ico"><use href="#i-fleche"/></svg></a><a class="btn btn-ligne" href="#etape-4">Voir ma commune</a></div>
+      <div class="reperes"><div><b>19</b><span>communes</span></div><div><b>5 260</b><span>habitants</span></div><div><b>619</b><span>km²</span></div></div>
+    </div>
+    <figure class="portrait reveal">
+      <img src="assets/img/galerie/col-de-finiels.jpg" alt="Lignes de crêtes bleues dans la brume au col de Finiels" width="478" height="720">
+      <figcaption><b>Col de Finiels</b>Photo : Émilie Reydon</figcaption>
+    </figure>
+  </div>
+</div>
+
+<main id="contenu" class="parcours">
+  <section class="etape" id="etape-1">
+    <div class="borne"><span>1</span></div>
+    <div class="wrap">
+      <div class="etape-tete reveal"><small>Étape 1</small><h2>Où voulez-vous aller ?</h2><p>Les services les plus demandés, comme des panneaux au départ d'un sentier.</p></div>
+      <form class="recherche reveal" role="search" data-recherche="#panneaux">
+        <label><svg class="ico"><use href="#i-loupe"/></svg><span class="sr">Rechercher</span><input type="search" placeholder="Crèche, bus, déchèterie, PLU..."></label>
+        <button class="btn btn-vert" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-loupe"/></svg><span>Rechercher</span></button>
+      </form>
+      <div class="panneaux" id="panneaux">
+        <a class="panneau reveal" href="#" data-mots="france services demarches papiers"><span class="pic"><svg class="ico"><use href="#i-mairie"/></svg></span><span><b>France services</b><small>8 lieux d'accueil pour vos démarches</small></span></a>
+        <a class="panneau reveal" href="#" data-mots="bus transport deplacer covoiturage 251"><span class="pic"><svg class="ico"><use href="#i-bus"/></svg></span><span><b>Se déplacer</b><small>Ligne 251, transport solidaire, covoiturage</small></span></a>
+        <a class="panneau reveal" href="#" data-mots="creche enfant famille loisirs ecole"><span class="pic"><svg class="ico"><use href="#i-enfant"/></svg></span><span><b>Famille</b><small>Micro-crèches, accueils de loisirs, écoles</small></span></a>
+        <a class="panneau reveal" href="#" data-mots="sante medecin pharmacie infirmier"><span class="pic"><svg class="ico"><use href="#i-sante"/></svg></span><span><b>Santé</b><small>Maisons de santé, médecins, infirmiers</small></span></a>
+        <a class="panneau reveal" href="#" data-mots="dechets decheterie tri"><span class="pic"><svg class="ico"><use href="#i-dechets"/></svg></span><span><b>Déchets</b><small>Collecte et déchèteries</small></span></a>
+        <a class="panneau reveal" href="#" data-mots="logement habitat renovation"><span class="pic"><svg class="ico"><use href="#i-maison"/></svg></span><span><b>Se loger</b><small>Aides à la rénovation, garantie Visale</small></span></a>
+        <a class="panneau reveal" href="#" data-mots="urbanisme plu carte communale"><span class="pic"><svg class="ico"><use href="#i-plan"/></svg></span><span><b>Urbanisme</b><small>PLU et cartes communales</small></span></a>
+        <a class="panneau reveal" href="#" data-mots="emploi offres travail"><span class="pic"><svg class="ico"><use href="#i-emploi"/></svg></span><span><b>Offres d'emploi</b><small>La communauté et le territoire recrutent</small></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="etape" id="etape-2">
+    <div class="borne"><span>2</span></div>
+    <div class="wrap">
+      <div class="etape-tete reveal"><small>Étape 2</small><h2>Au quotidien</h2></div>
+      <div class="trois">
+        <article class="carnet reveal"><h3><svg class="ico"><use href="#i-enfant"/></svg>Petite enfance</h3><ul><li><b>5 micro-crèches</b> de 2 mois et demi à 5 ans, gérées par Trait d'Union</li><li>Pont de Montvert, Ventalon, Sainte Croix, Saint Étienne, Vialas</li><li>Accueils de loisirs Méli Mélo de 3 à 12 ans</li></ul><a class="lien" href="#">Demander une place <svg class="ico"><use href="#i-fleche"/></svg></a></article>
+        <article class="carnet reveal"><h3><svg class="ico"><use href="#i-bus"/></svg>Se déplacer</h3><ul><li><b>Ligne 251</b> Mende, Florac, Alès, toute l'année les mardis et jeudis</li><li>Ticket à 2 €, gratuit pour les moins de 4 ans</li><li>Transport solidaire pour les rendez-vous médicaux</li></ul><a class="lien" href="#">Fiche horaire <svg class="ico"><use href="#i-fleche"/></svg></a></article>
+        <article class="carnet reveal"><h3><svg class="ico"><use href="#i-sante"/></svg>Santé</h3><ul><li><b>MSP du Collet</b> : Collet de Dèze, Vialas, Pont de Montvert</li><li><b>Maison de santé des Cévennes lozériennes</b> : Saint Germain, Saint Étienne, Sainte Croix</li><li>Centres de soins infirmiers</li></ul><a class="lien" href="#">Annuaire santé <svg class="ico"><use href="#i-fleche"/></svg></a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="etape" id="etape-3">
+    <div class="borne"><span>3</span></div>
+    <div class="wrap">
+      <div class="etape-tete reveal"><small>Étape 3</small><h2>Les nouvelles du territoire</h2></div>
+      <div class="actus">
+        <a class="actu reveal" href="#"><div class="vis"><img src="assets/img/actus/transport-solidaire.png" alt="Transport solidaire" loading="lazy"></div><div class="txt"><small>Se déplacer</small><h3>Transport solidaire : recherche de bénévoles</h3><p>Des chauffeurs bénévoles sont recherchés pour conduire les habitants à leurs rendez-vous médicaux.</p></div></a>
+        <a class="actu reveal" href="#"><div class="vis"><img src="assets/img/actus/clefs-habitat.png" alt="Clefs pour l'habitat en Lozère" loading="lazy"></div><div class="txt"><small>Logement</small><h3>Clefs pour l'habitat en Lozère</h3><p>Permanences au Collet de Dèze, à Saint Étienne Vallée Française, à Florac et à Villefort.</p></div></a>
+        <div class="conseil reveal"><h3>Conseil communautaire</h3><p>Séances de l'année 2026.</p><div class="dates"><span>19 janvier</span><span>5 mars</span><span>22 octobre</span></div>
+          <ul><li><a href="#">Délibérations <svg class="ico"><use href="#i-fleche"/></svg></a></li><li><a href="#">Actes administratifs <svg class="ico"><use href="#i-fleche"/></svg></a></li><li><a href="#">Enquêtes publiques <svg class="ico"><use href="#i-fleche"/></svg></a></li><li><a href="#">Subventions aux associations, avant le 31 janvier <svg class="ico"><use href="#i-fleche"/></svg></a></li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="etape" id="etape-4" data-territoire>
+    <div class="borne"><span>4</span></div>
+    <div class="wrap">
+      <div class="etape-tete reveal"><small>Étape 4</small><h2>Ma commune</h2></div>
+      <div class="terr reveal">
+        <div>
+          <div class="choix"><label for="commune">Choisir une des 19 communes</label>
+            <select id="commune" data-choix>
+              <option>Bassurels</option><option>Gabriac</option><option>Le Collet de Dèze</option><option>Le Pompidou</option><option>Moissac Vallée Française</option><option>Molezon</option><option value="Pont de Montvert - Sud Mont Lozère">Pont de Montvert, Sud Mont Lozère</option><option>Saint André de Lancize</option><option value="Saint Etienne Vallée Française">Saint Étienne Vallée Française</option><option>Saint Germain de Calberte</option><option>Saint Hilaire de Lavit</option><option>Saint Julien des Points</option><option>Saint Martin de Boubaux</option><option>Saint Martin de Lansuscle</option><option>Saint Michel de Dèze</option><option>Saint Privat de Vallongue</option><option>Sainte Croix Vallée Française</option><option>Ventalon en Cévennes</option><option>Vialas</option>
+            </select></div>
+          <div class="fiche" data-fiche aria-live="polite"></div>
+          <div class="chiffres"><div><b>19</b><span>communes</span></div><div><b>5 260</b><span>habitants</span></div><div><b>619</b><span>km²</span></div></div>
+        </div>
+        <div data-carte="Saint Germain de Calberte"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="etape" id="etape-5">
+    <div class="borne"><span>5</span></div>
+    <div class="wrap">
+      <div class="etape-tete reveal"><small>Étape 5</small><h2>Une pause lecture</h2><p>Le Vent des Bancels et le bulletin communautaire, à feuilleter en ligne. Tous les numéros depuis le n°94.</p></div>
+      <div class="kiosque">
+        <a class="reveal" href="#"><img src="assets/img/kiosque/vdb-131.png" alt="" loading="lazy"><b>Le Vent des Bancels n°131</b><small>Feuilleter</small></a>
+        <a class="reveal" href="#"><img src="assets/img/kiosque/vdb-130.png" alt="" loading="lazy"><b>Le Vent des Bancels n°130</b><small>Feuilleter</small></a>
+        <a class="reveal" href="#"><img src="assets/img/kiosque/bulletin-1.png" alt="" loading="lazy"><b>Bulletin communautaire n°1</b><small>Feuilleter</small></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="etape" id="etape-6">
+    <div class="borne"><span>6</span></div>
+    <div class="wrap">
+      <div class="etape-tete reveal"><small>Étape 6</small><h2>Le panorama</h2><p>Photographies d'Émilie Reydon. <a class="lien" href="#">Accéder aux galeries</a></p></div>
+      <div class="galerie reveal">
+        <figure><img src="assets/img/galerie/col-du-sapet.jpg" alt="Coucher de soleil au col du Sapet" loading="lazy"><figcaption>Col du Sapet</figcaption></figure>
+        <figure><img src="assets/img/galerie/fayard.jpg" alt="Hêtre centenaire" loading="lazy"><figcaption>Fayard</figcaption></figure>
+        <figure><img src="assets/img/galerie/arc-en-ciel.jpg" alt="Arc-en-ciel au-dessus des crêtes" loading="lazy"><figcaption>Arc-en-ciel</figcaption></figure>
+        <figure><img src="assets/img/galerie/gouttes.jpg" alt="Gouttes de rosée sur des herbes" loading="lazy"><figcaption>Rosée</figcaption></figure>
+        <figure><img src="assets/img/galerie/plateau.jpg" alt="Plateau granitique" loading="lazy"><figcaption>Plateau</figcaption></figure>
+        <figure><img src="assets/img/galerie/riviere.jpg" alt="Rivière aux eaux claires" loading="lazy"><figcaption>Rivière</figcaption></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="arrivee">
+  <div class="wrap">
+    <section class="partenaires" aria-labelledby="t-part">
+      <h2 id="t-part">À voir aussi</h2>
+      <div class="logos">
+        <a href="#" title="PETR Sud Lozère"><img src="assets/img/partenaires/petr-sud-lozere.jpg" alt="PETR Sud Lozère" loading="lazy"></a>
+        <a href="#" title="Lozère Nouvelle Vie"><img src="assets/img/partenaires/lozere-nouvelle-vie.png" alt="Lozère Nouvelle Vie" loading="lazy"></a>
+        <a href="#" title="Département de la Lozère"><img src="assets/img/partenaires/departement-lozere.jpg" alt="Lozère, le Département" loading="lazy"></a>
+        <a href="#" title="Office de tourisme"><img src="assets/img/partenaires/office-tourisme.png" alt="Office de tourisme des Cévennes au Mont Lozère" loading="lazy"></a>
+      </div>
+    </section>
+    <div class="cols">
+      <div>
+        <p class="nom">Communauté de communes des Cévennes au Mont Lozère</p>
+        <ul class="contact">
+          <li><svg class="ico"><use href="#i-lieu"/></svg>Route de Sauveplane, 48160 Le Collet de Dèze</li>
+          <li><svg class="ico"><use href="#i-tel"/></svg><a href="tel:0466650779">04 66 65 07 79</a></li>
+          <li><svg class="ico"><use href="#i-mail"/></svg><a href="#">contact@cevennes-mont-lozere.fr</a></li>
+        </ul>
+      </div>
+      <div><h3>La communauté</h3><ul><li><a href="#">Fonctionnement et élus</a></li><li><a href="#">Actes administratifs</a></li><li><a href="#">Enquêtes publiques</a></li><li><a href="#">Urbanisme</a></li><li><a href="#">Offres d'emploi</a></li></ul></div>
+      <div><h3>Services</h3><ul><li><a href="#">France services</a></li><li><a href="#">Famille</a></li><li><a href="#">Santé</a></li><li><a href="#">Se déplacer</a></li><li><a href="#">Gestion des déchets</a></li></ul></div>
+      <div><h3>Informations</h3><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Accessibilité</a></li><li><a href="#">Plan du site</a></li><li><a href="#">Gestion des cookies</a></li><li><a href="#">Le Vent des Bancels</a></li></ul></div>
+    </div>
+    <div class="bas"><span>Communauté de communes des Cévennes au Mont Lozère, 2026.</span><span>Maquette © Sylvain Caron 2026, proposition non contractuelle.</span></div>
+  </div>
+</footer>
+
+<script src="assets/traces.js"></script>
+<script src="assets/commun.js"></script>
+</body>
+</html>

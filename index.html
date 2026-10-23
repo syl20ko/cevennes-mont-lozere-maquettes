@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cévennes au Mont Lozère : trois visuels pour la refonte du site</title>
+<title>Cévennes au Mont Lozère : cinq visuels pour la refonte du site</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="author" content="Sylvain Caron">
 <meta name="copyright" content="Maquettes (c) Sylvain Caron 2026. Proposition non contractuelle. Reproduction et réutilisation interdites sans accord écrit.">
@@ -48,11 +48,14 @@ h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.015em;font-
 .eventail{position:relative;height:420px}
 .eventail figure{position:absolute;border-radius:12px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);background:#fff;transition:transform .4s}
 .eventail figure img{width:100%;height:100%;object-fit:cover;object-position:top}
-.eventail .e1{width:58%;height:78%;left:0;top:8%;transform:rotate(-6deg);z-index:1}
-.eventail .e2{width:58%;height:78%;left:21%;top:0;transform:rotate(1deg);z-index:2}
-.eventail .e3{width:58%;height:78%;right:0;top:12%;transform:rotate(7deg);z-index:1}
+.eventail figure{width:50%;height:66%}
+.eventail .e1{left:0;top:18%;transform:rotate(-9deg);z-index:1}
+.eventail .e4{left:13%;top:8%;transform:rotate(-4deg);z-index:2}
+.eventail .e2{left:25%;top:0;transform:rotate(0deg);z-index:3}
+.eventail .e5{left:37%;top:8%;transform:rotate(4deg);z-index:2}
+.eventail .e3{right:0;top:18%;transform:rotate(9deg);z-index:1}
 .eventail figure:hover{transform:rotate(0) scale(1.04);z-index:5}
-.eventail figcaption{position:absolute;left:12px;bottom:10px;background:var(--petrole-xd);color:#fff;font-size:.78rem;font-weight:700;padding:.3rem .7rem;border-radius:999px}
+.eventail figcaption{display:none;position:absolute;left:12px;bottom:10px;background:var(--petrole-xd);color:#fff;font-size:.78rem;font-weight:700;padding:.3rem .7rem;border-radius:999px}
 
 .choix{padding:4.5rem 0 2rem}
 .choix h2{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:.4rem}
@@ -127,17 +130,21 @@ footer .wrap{border-top:1px solid #dde6e4;padding-top:1.4rem;display:flex;justif
     <div class="hero">
       <div>
         <span class="kicker"><i></i>Refonte du site</span>
-        <h1>Trois visuels pour la <em>refonte</em> du site</h1>
+        <h1>Cinq visuels pour la <em>refonte</em> du site</h1>
         <p class="lead">Même logo, mêmes couleurs, mêmes photos et mêmes informations que le site actuel. La page d'accueil sert de démonstration : elle garde tout ce qu'elle contient aujourd'hui et met enfin en avant les services les plus utiles aux habitants. Le reste du site suivra le visuel retenu. À regarder sur ordinateur et sur téléphone.</p>
         <div class="sommaire">
           <a href="#m1"><b>1</b>Panorama</a>
           <a href="#m2"><b>2</b>Bancels</a>
           <a href="#m3"><b>3</b>Guichet</a>
+          <a href="#m4"><b>4</b>Lauzes</a>
+          <a href="#m5"><b>5</b>Sentier</a>
         </div>
       </div>
       <div class="eventail" aria-hidden="true">
         <figure class="e1"><img src="apercus/m1.jpg" alt=""><figcaption>1 · Panorama</figcaption></figure>
+        <figure class="e4"><img src="apercus/m4.jpg" alt=""><figcaption>4 · Lauzes</figcaption></figure>
         <figure class="e2"><img src="apercus/m2.jpg" alt=""><figcaption>2 · Bancels</figcaption></figure>
+        <figure class="e5"><img src="apercus/m5.jpg" alt=""><figcaption>5 · Sentier</figcaption></figure>
         <figure class="e3"><img src="apercus/m3.jpg" alt=""><figcaption>3 · Guichet</figcaption></figure>
       </div>
     </div>
@@ -147,7 +154,7 @@ footer .wrap{border-top:1px solid #dde6e4;padding-top:1.4rem;display:flex;justif
 <main class="choix">
   <div class="wrap">
     <h2>Choisir un visuel</h2>
-    <p class="intro">Chaque maquette est une vraie page qui s'ouvre dans le navigateur, avec le menu, la recherche et la carte des communes qui réagissent. La barre jaune en haut de chaque maquette permet de passer de l'une à l'autre ou de revenir ici.</p>
+    <p class="intro">Chaque maquette est une vraie page qui s'ouvre dans le navigateur, avec le menu, la recherche et la carte des communes qui réagissent. La barre jaune en haut de chaque maquette permet de passer de l'une à l'autre ou de revenir ici. Les visuels 4 et 5 ont été ajoutés pour élargir le choix.</p>
 
     <article class="panneau" id="m1">
       <div class="ecrans">
@@ -208,6 +215,46 @@ footer .wrap{border-top:1px solid #dde6e4;padding-top:1.4rem;display:flex;justif
         <div class="ambiance">Ambiance <i style="background:#123b34"></i><i style="background:#94c122"></i><i style="background:#f3f7f5"></i><i style="background:#fff"></i> vert forêt, gros boutons</div>
       </div>
     </article>
+
+    <article class="panneau" id="m4">
+      <div class="ecrans">
+        <a class="desk" href="maquette-4-lauzes.html"><div class="chrome"><i></i><i></i><i></i></div><img src="apercus/m4.jpg" alt="Aperçu de la maquette Lauzes sur ordinateur"></a>
+        <a class="mob" href="maquette-4-lauzes.html"><img src="apercus/m4-mobile.jpg" alt="Aperçu de la maquette Lauzes sur téléphone"></a>
+      </div>
+      <div class="txt">
+        <span class="num">04</span>
+        <span class="tag">Maquette 4</span>
+        <h3>Lauzes</h3>
+        <p>La plus actuelle. Une mosaïque de tuiles, comme les toits de lauzes, où chaque service tient dans une case avec un chiffre fort : 8 lieux France services, 5 micro-crèches, 14 médiathèques.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Tout l'essentiel visible d'un coup d'œil, sans menu</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Chiffres en grand, couleurs franches du logo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Le visuel le plus moderne, proche des nouveaux sites de collectivités</li>
+        </ul>
+        <div class="actions"><a class="btn btn-vert" href="maquette-4-lauzes.html">Ouvrir la maquette <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div class="ambiance">Ambiance <i style="background:#24292b"></i><i style="background:#e9e7e2"></i><i style="background:#94c122"></i><i style="background:#06706b"></i> granite, lauze, vert du logo</div>
+      </div>
+    </article>
+
+    <article class="panneau" id="m5">
+      <div class="ecrans">
+        <a class="desk" href="maquette-5-sentier.html"><div class="chrome"><i></i><i></i><i></i></div><img src="apercus/m5.jpg" alt="Aperçu de la maquette Sentier sur ordinateur"></a>
+        <a class="mob" href="maquette-5-sentier.html"><img src="apercus/m5-mobile.jpg" alt="Aperçu de la maquette Sentier sur téléphone"></a>
+      </div>
+      <div class="txt">
+        <span class="num">05</span>
+        <span class="tag">Maquette 5</span>
+        <h3>Sentier</h3>
+        <p>La plus immersive. La page se lit comme une randonnée : un tracé en pointillés relie six étapes numérotées, et les services prennent la forme de panneaux de balisage.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Bleus de brume repris des photos du col de Finiels</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Services présentés comme des panneaux de randonnée</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Le visuel le plus évocateur pour un territoire de montagne</li>
+        </ul>
+        <div class="actions"><a class="btn btn-vert" href="maquette-5-sentier.html">Ouvrir la maquette <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div class="ambiance">Ambiance <i style="background:#1c3557"></i><i style="background:#e8eef7"></i><i style="background:#f2e6cf"></i><i style="background:#94c122"></i> bleu nuit, brume, bois des panneaux</div>
+      </div>
+    </article>
   </div>
 </main>
 
@@ -215,7 +262,7 @@ footer .wrap{border-top:1px solid #dde6e4;padding-top:1.4rem;display:flex;justif
   <div class="wrap">
     <div class="boite">
       <div>
-        <h2>Ce que les trois visuels ont en commun</h2>
+        <h2>Ce que les cinq visuels ont en commun</h2>
         <p>Le contenu est le même partout, repris du site actuel. C'est la mise en page qui change, pas le message.</p>
         <p class="astuce">Astuce : ajouter <code>?contraste=1</code> à l'adresse de la maquette Guichet l'ouvre directement en contraste renforcé.</p>
       </div>

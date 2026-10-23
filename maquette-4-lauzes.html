@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquette 4 Lauzes : Communauté de communes des Cévennes au Mont Lozère</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Sylvain Caron">
+<meta name="copyright" content="Maquette (c) Sylvain Caron 2026. Proposition non contractuelle. Reproduction et réutilisation interdites sans accord écrit.">
+<!-- Maquette page d'accueil, refonte Symfony du site cevennes-mont-lozere.fr. (c) Sylvain Caron 2026. Proposition non contractuelle. -->
+<link rel="stylesheet" href="assets/barre.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --granite:#24292b; --granite-2:#353c3f; --lauze:#e9e7e2; --lauze-2:#dcd9d2; --blanc:#fff;
+  --vert:#94c122; --vert-d:#4f6b0c; --vert-l:#eef5dc; --teal:#08a099; --teal-t:#06706b; --teal-l:#dff2f0;
+  --encre:#1b2022; --gris:#575f61; --ligne:#d3cfc6;
+  --sans:'Hanken Grotesk',system-ui,sans-serif; --serif:'Instrument Serif',Georgia,serif;
+  --r:22px; --gap:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--encre);background:var(--lauze);line-height:1.55;font-size:18px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{line-height:1.05;letter-spacing:-.03em;font-weight:800}
+.wrap{width:min(1280px,100% - 32px);margin-inline:auto}
+.ico{width:1.2em;height:1.2em;flex:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.evitement{position:absolute;left:12px;top:-60px;background:var(--vert);color:var(--encre);padding:.6rem 1rem;border-radius:10px;font-weight:700;z-index:300;text-decoration:none}
+.evitement:focus{top:12px}
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:10px}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;font-style:italic}
+.reveal{opacity:0;transform:translateY(16px) scale(.99);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* entete */
+.entete{padding:14px 0}
+.entete .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--blanc);border-radius:999px;padding:8px 10px 8px 22px}
+.logo img{height:54px;width:auto}
+.nav ul{list-style:none;display:flex;gap:2px}
+.nav a{display:block;padding:.6rem 1rem;border-radius:999px;text-decoration:none;font-weight:600;font-size:.98rem;transition:background .2s}
+.nav a:hover{background:var(--lauze)}
+.outils{display:flex;gap:8px;align-items:center}
+.pastille{display:inline-flex;align-items:center;gap:.5rem;height:46px;padding:0 1.1rem;border-radius:999px;background:var(--granite);color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;border:0;cursor:pointer;transition:background .2s}
+.pastille:hover{background:var(--teal-t)}
+.pastille.claire{background:var(--lauze);color:var(--encre)}
+.pastille.claire:hover{background:var(--lauze-2)}
+.burger{display:none;width:46px;padding:0;justify-content:center}
+
+/* tuiles */
+.tuile{border-radius:var(--r);background:var(--blanc);padding:26px;position:relative;overflow:hidden;text-decoration:none;color:var(--encre);display:flex;flex-direction:column}
+a.tuile{transition:transform .25s,box-shadow .25s}
+a.tuile:hover{transform:translateY(-3px);box-shadow:0 20px 36px -22px rgba(36,41,43,.55)}
+.etiq{display:inline-flex;align-items:center;gap:.45rem;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);margin-bottom:auto}
+.etiq .ico{width:18px;height:18px}
+.chiffre{font-size:clamp(3.4rem,6vw,5.4rem);font-weight:800;letter-spacing:-.05em;line-height:.9;margin-top:1.4rem}
+.tuile h3{font-size:1.35rem;letter-spacing:-.02em;margin-top:.5rem}
+.tuile p{color:var(--gris);font-size:.98rem;margin-top:.35rem}
+.fleche{position:absolute;right:20px;top:20px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--lauze);transition:background .2s,transform .2s}
+.fleche .ico{width:20px;height:20px;transform:rotate(-45deg)}
+a.tuile:hover .fleche{background:var(--vert);transform:rotate(45deg)}
+.t-granite{background:var(--granite);color:#fff}
+.t-granite p,.t-granite .etiq{color:#c9cfd0}
+.t-granite .fleche{background:var(--granite-2);color:#fff}
+.t-vert{background:var(--vert)}
+.t-vert p,.t-vert .etiq{color:#2a3a07}
+.t-vert .fleche{background:rgba(255,255,255,.45)}
+.t-teal{background:var(--teal-t);color:#fff}
+.t-teal p,.t-teal .etiq{color:#d6efec}
+.t-teal .fleche{background:rgba(255,255,255,.18);color:#fff}
+.t-lauze{background:var(--lauze-2)}
+
+/* accueil */
+.accueil{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin-top:4px}
+.a-titre{grid-column:1/3;grid-row:1/3;padding:40px;justify-content:space-between;min-height:520px}
+.a-titre .kick{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.82rem;color:var(--vert)}
+.a-titre h1{font-size:clamp(2.8rem,5.6vw,5.2rem);margin:.9rem 0 1rem}
+.a-titre h1 .serif{color:var(--vert);font-size:1.08em}
+.a-titre p.lead{color:#d6dbdc;font-size:1.12rem;max-width:42ch}
+.recherche{display:flex;background:#fff;border-radius:999px;padding:6px;margin-top:1.8rem}
+.recherche label{display:flex;align-items:center;gap:.6rem;flex:1;padding:0 .9rem;color:var(--gris)}
+.recherche input{border:0;outline:0;font:inherit;width:100%;padding:.75rem 0;background:transparent;color:var(--encre)}
+.recherche button{background:var(--vert);color:var(--encre);border:0;border-radius:999px;font:inherit;font-weight:700;padding:0 1.3rem;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;min-height:48px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.2rem}
+.chips span{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:.3rem .8rem;font-size:.9rem;color:#e7ebec}
+.chips b{color:var(--vert)}
+.a-photo{grid-column:3/5;padding:0;background:var(--granite)}
+.a-photo img{width:100%;height:auto}
+.a-photo figcaption{position:absolute;left:16px;bottom:14px;background:rgba(36,41,43,.75);color:#fff;font-size:.82rem;padding:.3rem .75rem;border-radius:999px}
+.a-photo{justify-content:center}
+
+/* section */
+.bloc{margin-top:56px}
+.bloc-tete{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:18px;padding:0 6px}
+.bloc-tete h2{font-size:clamp(2rem,4vw,3.2rem)}
+.bloc-tete h2 .serif{color:var(--teal-t)}
+.bloc-tete a{font-weight:700;text-decoration:none;display:inline-flex;gap:.4rem;align-items:center;border-bottom:2px solid var(--vert)}
+
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.services .tuile{min-height:230px}
+.s-large{grid-column:span 2}
+.s-haute{grid-row:span 2}
+.s-photo{padding:0;background:var(--granite)}
+.s-photo img{width:100%;height:auto}
+
+/* actus */
+.actus{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gap)}
+.actu .vis{background:var(--lauze);border-radius:14px;padding:14px;margin-bottom:16px}
+.actu .vis img{width:100%;height:auto;max-height:280px;object-fit:contain}
+.actu h3{font-size:1.3rem}
+.seances{display:flex;gap:8px;flex-wrap:wrap;margin:1rem 0}
+.seances span{background:var(--granite-2);border-radius:12px;padding:.5rem .8rem;font-weight:700}
+.liste{list-style:none;margin-top:auto}
+.liste a{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-top:1px solid rgba(255,255,255,.14);text-decoration:none;font-weight:600}
+.liste a:hover{color:var(--vert)}
+
+/* territoire */
+.territoire{display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:var(--gap)}
+.carte-tuile{background:var(--teal-l);padding:30px}
+.carte-svg{width:100%;height:auto;max-height:440px}
+.commune{fill:#fff;stroke:var(--teal-t);stroke-width:2.2;cursor:pointer;transition:fill .2s}
+.commune.a-services{fill:#c4e6e2}
+.commune:hover,.commune.active{fill:var(--vert)}
+.commune:focus-visible{outline:none;stroke:var(--granite);stroke-width:5}
+.fiche-tuile{background:var(--granite);color:#fff}
+.fiche-nom{display:block;font-size:1.6rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin:.6rem 0 1rem}
+.fiche-liste{list-style:none;display:grid;gap:.7rem}
+.fiche-liste li{color:#d6dbdc;font-size:.95rem;line-height:1.4}
+.fiche-liste i{display:block;font-style:normal;font-weight:700;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--vert)}
+.fiche-vide{color:#c9cfd0}
+.communes{list-style:none;columns:2;column-gap:14px;font-size:.95rem;margin-top:1rem}
+.communes li{break-inside:avoid}
+.communes a{display:block;padding:.28rem .5rem;margin-left:-.5rem;border-radius:8px;text-decoration:none}
+.communes li.active a,.communes a:hover{background:var(--vert-l);color:var(--vert-d);font-weight:700}
+.stats3{display:flex;gap:1.6rem;margin-top:1rem}
+.stats3 b{display:block;font-size:2.2rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+.stats3 span{color:var(--gris);font-size:.9rem}
+
+/* kiosque + galerie */
+.lire{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.couv{padding:18px;align-items:center;text-align:center;background:var(--lauze-2)}
+.couv img{width:78%;height:auto;box-shadow:0 16px 26px -14px rgba(0,0,0,.5);transition:transform .3s}
+.couv:hover img{transform:translateY(-6px) rotate(-1deg)}
+.couv b{margin-top:14px;font-size:1rem}
+.galerie{columns:4;column-gap:var(--gap)}
+.galerie figure{break-inside:avoid;margin-bottom:var(--gap);border-radius:var(--r);overflow:hidden;position:relative}
+.galerie img{width:100%;height:auto;transition:transform .6s}
+.galerie figure:hover img{transform:scale(1.03)}
+.galerie figcaption{position:absolute;left:12px;bottom:12px;background:rgba(36,41,43,.78);color:#fff;font-size:.8rem;padding:.25rem .65rem;border-radius:999px}
+.credit{font-size:.9rem;color:var(--gris);padding:0 6px}
+
+/* partenaires + pied */
+.partenaires{margin-top:56px;background:var(--blanc);border-radius:var(--r);padding:24px 30px;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.partenaires h2{font-size:1.3rem}
+.logos{display:flex;gap:2.2rem;align-items:center;flex-wrap:wrap}
+.logos img{height:54px;width:auto}
+.pied{margin:14px auto 20px;background:var(--granite);color:#c9cfd0;border-radius:var(--r);padding:40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem;font-size:.95rem}
+.pied .nom{font-size:1.6rem;color:#fff;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:1rem}
+.pied .nom .serif{color:var(--vert)}
+.pied h3{color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.8rem}
+.pied ul{list-style:none;display:grid;gap:.45rem}
+.pied a{text-decoration:none;color:#e1e5e6}
+.pied a:hover{color:var(--vert)}
+.pied .contact li{display:flex;gap:.5rem}
+.pied .contact .ico{color:var(--vert);width:17px;height:17px;margin-top:.25rem}
+.pied .bas{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding-top:1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:#9ea6a8}
+
+@media(max-width:1100px){
+  .nav{display:none;position:absolute;left:16px;right:16px;top:84px;background:#fff;border-radius:var(--r);padding:12px;z-index:80;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
+  .nav.open{display:block}
+  .nav ul{flex-direction:column}
+  .entete{position:relative}
+  .burger{display:inline-flex}
+  .accueil,.services,.lire{grid-template-columns:1fr 1fr}
+  .a-titre{grid-column:1/-1;grid-row:auto;min-height:0}
+  .a-photo{grid-column:1/-1}
+  .actus{grid-template-columns:1fr 1fr}
+  .actus .tuile:last-child{grid-column:1/-1}
+  .territoire{grid-template-columns:1fr 1fr}
+  .territoire .tuile:first-child{grid-column:1/-1}
+  .galerie{columns:3}
+  .pied{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  body{font-size:17px}
+  .entete .wrap{padding:6px 6px 6px 16px}
+  .logo img{height:44px}
+  .outils .claire{display:none}
+  .a-titre{padding:26px}
+  .recherche button span{display:none}
+  .accueil,.services,.actus,.territoire,.lire{grid-template-columns:1fr}
+  .s-large,.s-haute{grid-column:auto;grid-row:auto}
+  .services .tuile{min-height:0}
+  .chiffre{font-size:3.4rem}
+  .lire{grid-template-columns:1fr 1fr}
+  .lire .couv:first-child{grid-column:1/-1}
+  .galerie{columns:2}
+  .pied{grid-template-columns:1fr;padding:28px}
+}
+</style>
+</head>
+<body>
+<!--ICONES--><svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-fleche" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-loupe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-tel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+<symbol id="i-lieu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 3v8M16 3v8M7 18v3M17 18v3"/><circle cx="8" cy="14.5" r=".6" fill="currentColor"/><circle cx="16" cy="14.5" r=".6" fill="currentColor"/></symbol>
+<symbol id="i-mairie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 18v-7M9.5 18v-7M14.5 18v-7M19 18v-7M12 3l9 5H3z"/></symbol>
+<symbol id="i-enfant" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9 14.5s1 1.5 3 1.5 3-1.5 3-1.5"/><path d="M9 9.5h.01M15 9.5h.01"/><path d="M12 2.5c-1.5 1.5-1 3 .5 3"/></symbol>
+<symbol id="i-sante" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/><path d="M3.5 12H9l1-2 2 4.5 2-6 1.5 3.5h5"/></symbol>
+<symbol id="i-dechets" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></symbol>
+<symbol id="i-maison" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+<symbol id="i-livre" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+<symbol id="i-assos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+<symbol id="i-agenda" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol>
+<symbol id="i-emploi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/></symbol>
+<symbol id="i-feuille" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></symbol>
+<symbol id="i-montagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></symbol>
+<symbol id="i-horloge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-plan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="i-externe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+<symbol id="i-coeur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
+<symbol id="i-boussole" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></symbol>
+<symbol id="i-texte" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></symbol>
+<symbol id="i-contraste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/></symbol>
+</svg>
+<!--/ICONES-->
+<!--BARRE--><div class="barre-maq" role="navigation" aria-label="Navigation entre les maquettes"><a class="retour" href="index.html">&#8592; <span class="mot">Voir les</span> 5 visuels</a><div class="onglets"><a href="maquette-1-panorama.html"><b>1</b><span>Panorama</span></a><a href="maquette-2-bancels.html"><b>2</b><span>Bancels</span></a><a href="maquette-3-guichet.html"><b>3</b><span>Guichet</span></a><a href="maquette-4-lauzes.html" class="actif" aria-current="page"><b>4</b><span>Lauzes</span></a><a href="maquette-5-sentier.html"><b>5</b><span>Sentier</span></a></div><div class="fleches"><a href="maquette-3-guichet.html" title="Maquette précédente" aria-label="Maquette précédente">&#8249;</a><a href="maquette-5-sentier.html" title="Maquette suivante" aria-label="Maquette suivante">&#8250;</a></div></div><!--/BARRE-->
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Accueil"><img src="assets/img/logo.png" alt="Communauté de communes des Cévennes au Mont Lozère" width="280" height="150"></a>
+    <nav class="nav" aria-label="Menu principal">
+      <ul><li><a href="#">La communauté</a></li><li><a href="#territoire">Territoire</a></li><li><a href="#services">Services</a></li><li><a href="#">Environnement</a></li><li><a href="#actualites">Actualités</a></li></ul>
+    </nav>
+    <div class="outils">
+      <a class="pastille claire" href="tel:0466650779"><svg class="ico"><use href="#i-tel"/></svg>04 66 65 07 79</a>
+      <a class="pastille" href="#recherche" aria-label="Rechercher"><svg class="ico"><use href="#i-loupe"/></svg></a>
+      <button class="pastille burger" aria-expanded="false" aria-label="Ouvrir le menu"><svg class="ico"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="contenu" class="wrap">
+  <section class="accueil">
+    <div class="tuile t-granite a-titre reveal">
+      <div>
+        <span class="kick">Communauté de communes</span>
+        <h1>des Cévennes <span class="serif">au Mont Lozère</span></h1>
+        <p class="lead">Démarches, transports, petite enfance, santé, déchets, logement : les services du quotidien des 19 communes.</p>
+      </div>
+      <div>
+        <form class="recherche" id="recherche" role="search" data-recherche="#services">
+          <label><svg class="ico"><use href="#i-loupe"/></svg><span class="sr">Rechercher</span><input type="search" placeholder="Crèche, bus, déchèterie, PLU..."></label>
+          <button type="submit" aria-label="Rechercher"><svg class="ico" aria-hidden="true"><use href="#i-loupe"/></svg><span>Rechercher</span></button>
+        </form>
+        <div class="chips"><span><b>19</b> communes</span><span><b>5 260</b> habitants</span><span><b>619</b> km²</span></div>
+      </div>
+    </div>
+    <figure class="tuile a-photo reveal">
+      <img src="assets/img/panorama.jpg" alt="Les crêtes des Cévennes vues du Mont Lozère" width="1838" height="620">
+      <figcaption>Photo : Émilie Reydon</figcaption>
+    </figure>
+    <a class="tuile t-vert reveal" href="#" data-mots="france services demarches papiers"><span class="etiq"><svg class="ico"><use href="#i-mairie"/></svg>France services</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><span class="chiffre">8</span><h3>lieux pour être aidé dans vos démarches</h3></a>
+    <a class="tuile t-teal reveal" href="#" data-mots="bus transport 251 deplacer"><span class="etiq"><svg class="ico"><use href="#i-bus"/></svg>Ligne 251</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><span class="chiffre">2 €</span><h3>le trajet Mende, Florac, Alès</h3></a>
+  </section>
+
+  <section class="bloc" id="services" aria-labelledby="t-serv">
+    <div class="bloc-tete reveal"><h2 id="t-serv">Vivre <span class="serif">ici</span></h2><a href="#">Tous les services <svg class="ico"><use href="#i-fleche"/></svg></a></div>
+    <div class="services">
+      <a class="tuile s-haute t-lauze reveal" href="#" data-mots="creche enfant famille loisirs"><span class="etiq"><svg class="ico"><use href="#i-enfant"/></svg>Famille</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><span class="chiffre">5</span><h3>micro-crèches</h3><p>Tournicoton, Ventoudoux, Les Pitchouns, Les Loustics, Les Péquélets. Accueils de loisirs Méli Mélo de 3 à 12 ans.</p></a>
+      <a class="tuile reveal" href="#" data-mots="sante medecin"><span class="etiq"><svg class="ico"><use href="#i-sante"/></svg>Santé</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><span class="chiffre">2</span><h3>maisons de santé</h3></a>
+      <a class="tuile reveal" href="#" data-mots="mediatheque livres"><span class="etiq"><svg class="ico"><use href="#i-livre"/></svg>Médiathèques</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><span class="chiffre">14</span><h3>médiathèques en réseau</h3></a>
+      <figure class="tuile s-photo s-haute reveal"><img src="assets/img/galerie/cascade-de-runes.jpg" alt="Cascade de Runes" width="637" height="960" loading="lazy"></figure>
+      <a class="tuile t-granite s-large reveal" href="#" data-mots="dechets dechetterie tri"><span class="etiq"><svg class="ico"><use href="#i-dechets"/></svg>Déchets</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><h3 style="font-size:1.7rem;margin-top:1.4rem">Collecte et déchèteries</h3><p>Assurées depuis 2024 par le Syndicat mixte de l'environnement Sud Lozère.</p></a>
+      <a class="tuile reveal" href="#" data-mots="logement habitat renovation"><span class="etiq"><svg class="ico"><use href="#i-maison"/></svg>Se loger</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><h3 style="margin-top:1.4rem">Clefs pour l'habitat, garantie Visale</h3></a>
+      <a class="tuile t-vert reveal" href="#" data-mots="association subvention"><span class="etiq"><svg class="ico"><use href="#i-assos"/></svg>Associations</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><span class="chiffre" style="font-size:2.6rem">31 janv.</span><h3>date limite des demandes de subvention</h3></a>
+      <a class="tuile reveal" href="#" data-mots="urbanisme plu carte communale"><span class="etiq"><svg class="ico"><use href="#i-plan"/></svg>Urbanisme</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><h3 style="margin-top:1.4rem">PLU et cartes communales</h3></a>
+      <a class="tuile t-teal reveal" href="#" data-mots="emploi offres travail"><span class="etiq"><svg class="ico"><use href="#i-emploi"/></svg>Emploi</span><span class="fleche"><svg class="ico"><use href="#i-fleche"/></svg></span><h3 style="margin-top:1.4rem">Offres d'emploi de la communauté et du territoire</h3></a>
+    </div>
+  </section>
+
+  <section class="bloc" id="actualites" aria-labelledby="t-actu">
+    <div class="bloc-tete reveal"><h2 id="t-actu">À la <span class="serif">une</span></h2><a href="#">Toutes les actualités <svg class="ico"><use href="#i-fleche"/></svg></a></div>
+    <div class="actus">
+      <a class="tuile actu reveal" href="#"><div class="vis"><img src="assets/img/actus/transport-solidaire.png" alt="Transport solidaire" loading="lazy"></div><span class="etiq" style="margin:0">Se déplacer</span><h3>Transport solidaire : recherche de bénévoles</h3><p>Des chauffeurs bénévoles sont recherchés pour les rendez-vous médicaux des habitants.</p></a>
+      <a class="tuile actu reveal" href="#"><div class="vis"><img src="assets/img/actus/clefs-habitat.png" alt="Clefs pour l'habitat en Lozère" loading="lazy"></div><span class="etiq" style="margin:0">Logement</span><h3>Aides pour le logement : Clefs pour l'habitat</h3><p>Permanences au Collet de Dèze, à Saint Étienne Vallée Française, à Florac et à Villefort.</p></a>
+      <div class="tuile t-granite reveal"><span class="etiq" style="margin:0"><svg class="ico"><use href="#i-agenda"/></svg>Conseil communautaire</span><h3 style="font-size:1.6rem;margin-top:.9rem">Séances 2026</h3><div class="seances"><span>19 janv.</span><span>5 mars</span><span>22 oct.</span></div>
+        <ul class="liste"><li><a href="#">Délibérations <svg class="ico"><use href="#i-fleche"/></svg></a></li><li><a href="#">Actes administratifs <svg class="ico"><use href="#i-fleche"/></svg></a></li><li><a href="#">Enquêtes publiques <svg class="ico"><use href="#i-fleche"/></svg></a></li></ul></div>
+    </div>
+  </section>
+
+  <section class="bloc" id="territoire" aria-labelledby="t-terr" data-territoire>
+    <div class="bloc-tete reveal"><h2 id="t-terr">19 <span class="serif">communes</span></h2></div>
+    <div class="territoire">
+      <div class="tuile reveal">
+        <span class="etiq" style="margin:0"><svg class="ico"><use href="#i-montagne"/></svg>Le territoire</span>
+        <div class="stats3"><div><b>5 260</b><span>habitants</span></div><div><b>619</b><span>km²</span></div></div>
+        <ul class="communes">
+          <li data-commune="Bassurels"><a href="#">Bassurels</a></li><li data-commune="Gabriac"><a href="#">Gabriac</a></li><li data-commune="Le Collet de Dèze"><a href="#">Le Collet de Dèze</a></li><li data-commune="Le Pompidou"><a href="#">Le Pompidou</a></li><li data-commune="Moissac Vallée Française"><a href="#">Moissac Vallée Française</a></li><li data-commune="Molezon"><a href="#">Molezon</a></li><li data-commune="Pont de Montvert - Sud Mont Lozère"><a href="#">Pont de Montvert, Sud Mont Lozère</a></li><li data-commune="Saint André de Lancize"><a href="#">Saint André de Lancize</a></li><li data-commune="Saint Etienne Vallée Française"><a href="#">Saint Étienne Vallée Française</a></li><li data-commune="Saint Germain de Calberte"><a href="#">Saint Germain de Calberte</a></li><li data-commune="Saint Hilaire de Lavit"><a href="#">Saint Hilaire de Lavit</a></li><li data-commune="Saint Julien des Points"><a href="#">Saint Julien des Points</a></li><li data-commune="Saint Martin de Boubaux"><a href="#">Saint Martin de Boubaux</a></li><li data-commune="Saint Martin de Lansuscle"><a href="#">Saint Martin de Lansuscle</a></li><li data-commune="Saint Michel de Dèze"><a href="#">Saint Michel de Dèze</a></li><li data-commune="Saint Privat de Vallongue"><a href="#">Saint Privat de Vallongue</a></li><li data-commune="Sainte Croix Vallée Française"><a href="#">Sainte Croix Vallée Française</a></li><li data-commune="Ventalon en Cévennes"><a href="#">Ventalon en Cévennes</a></li><li data-commune="Vialas"><a href="#">Vialas</a></li>
+        </ul>
+      </div>
+      <div class="tuile carte-tuile reveal"><div data-carte="Vialas"></div></div>
+      <div class="tuile fiche-tuile reveal"><span class="etiq" style="margin:0;color:#c9cfd0"><svg class="ico"><use href="#i-lieu"/></svg>Dans cette commune</span><div class="fiche" data-fiche aria-live="polite"></div></div>
+    </div>
+  </section>
+
+  <section class="bloc" aria-labelledby="t-lire">
+    <div class="bloc-tete reveal"><h2 id="t-lire">À <span class="serif">lire</span></h2><a href="#">Tout le kiosque <svg class="ico"><use href="#i-fleche"/></svg></a></div>
+    <div class="lire">
+      <div class="tuile t-granite reveal"><span class="etiq"><svg class="ico"><use href="#i-livre"/></svg>Kiosque</span><h3 style="font-size:1.8rem;margin-top:1.4rem">Le Vent des Bancels</h3><p>Le journal du territoire, à feuilleter en ligne. Tous les numéros depuis le n°94.</p></div>
+      <a class="tuile couv reveal" href="#"><img src="assets/img/kiosque/vdb-131.png" alt="" loading="lazy"><b>Le Vent des Bancels n°131</b></a>
+      <a class="tuile couv reveal" href="#"><img src="assets/img/kiosque/vdb-130.png" alt="" loading="lazy"><b>Le Vent des Bancels n°130</b></a>
+      <a class="tuile couv reveal" href="#"><img src="assets/img/kiosque/bulletin-1.png" alt="" loading="lazy"><b>Bulletin communautaire n°1</b></a>
+    </div>
+  </section>
+
+  <section class="bloc" aria-labelledby="t-img">
+    <div class="bloc-tete reveal"><h2 id="t-img">En <span class="serif">images</span></h2><a href="#">Accéder aux galeries <svg class="ico"><use href="#i-fleche"/></svg></a></div>
+    <div class="galerie reveal">
+      <figure><img src="assets/img/galerie/brebis.jpg" alt="Troupeau de brebis dans une vallée verte" loading="lazy"><figcaption>Brebis</figcaption></figure>
+      <figure><img src="assets/img/galerie/col-de-finiels.jpg" alt="Brumes bleues au col de Finiels" loading="lazy"><figcaption>Col de Finiels</figcaption></figure>
+      <figure><img src="assets/img/galerie/col-du-sapet.jpg" alt="Coucher de soleil au col du Sapet" loading="lazy"><figcaption>Col du Sapet</figcaption></figure>
+      <figure><img src="assets/img/galerie/rocher.jpg" alt="Randonneuse au pied d'un rocher en équilibre" loading="lazy"><figcaption>Chaos granitique</figcaption></figure>
+      <figure><img src="assets/img/galerie/automne.jpg" alt="Forêt aux couleurs d'automne" loading="lazy"><figcaption>Automne</figcaption></figure>
+      <figure><img src="assets/img/galerie/menhir.jpg" alt="Menhir sur le plateau au crépuscule" loading="lazy"><figcaption>Menhir</figcaption></figure>
+      <figure><img src="assets/img/galerie/fleur2.jpg" alt="Fleurs sauvages" loading="lazy"><figcaption>Fleurs</figcaption></figure>
+      <figure><img src="assets/img/galerie/fraissinet.jpg" alt="Hameau de Fraissinet dans la brume" loading="lazy"><figcaption>Fraissinet</figcaption></figure>
+    </div>
+    <p class="credit">Photographies d'Émilie Reydon.</p>
+  </section>
+
+  <section class="partenaires reveal" aria-labelledby="t-part">
+    <h2 id="t-part">À voir aussi</h2>
+    <div class="logos">
+      <a href="#" title="PETR Sud Lozère"><img src="assets/img/partenaires/petr-sud-lozere.jpg" alt="PETR Sud Lozère" loading="lazy"></a>
+      <a href="#" title="Lozère Nouvelle Vie"><img src="assets/img/partenaires/lozere-nouvelle-vie.png" alt="Lozère Nouvelle Vie" loading="lazy"></a>
+      <a href="#" title="Département de la Lozère"><img src="assets/img/partenaires/departement-lozere.jpg" alt="Lozère, le Département" loading="lazy"></a>
+      <a href="#" title="Office de tourisme"><img src="assets/img/partenaires/office-tourisme.png" alt="Office de tourisme des Cévennes au Mont Lozère" loading="lazy"></a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap pied">
+  <div>
+    <p class="nom">Cévennes <span class="serif">au Mont Lozère</span></p>
+    <ul class="contact">
+      <li><svg class="ico"><use href="#i-lieu"/></svg>Route de Sauveplane, 48160 Le Collet de Dèze</li>
+      <li><svg class="ico"><use href="#i-tel"/></svg><a href="tel:0466650779">04 66 65 07 79</a></li>
+      <li><svg class="ico"><use href="#i-mail"/></svg><a href="#">contact@cevennes-mont-lozere.fr</a></li>
+    </ul>
+  </div>
+  <div><h3>La communauté</h3><ul><li><a href="#">Fonctionnement et élus</a></li><li><a href="#">Actes administratifs</a></li><li><a href="#">Enquêtes publiques</a></li><li><a href="#">Urbanisme</a></li><li><a href="#">Offres d'emploi</a></li></ul></div>
+  <div><h3>Services</h3><ul><li><a href="#">France services</a></li><li><a href="#">Famille</a></li><li><a href="#">Santé</a></li><li><a href="#">Se déplacer</a></li><li><a href="#">Gestion des déchets</a></li></ul></div>
+  <div><h3>Informations</h3><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Accessibilité</a></li><li><a href="#">Plan du site</a></li><li><a href="#">Gestion des cookies</a></li><li><a href="#">Le Vent des Bancels</a></li></ul></div>
+  <div class="bas"><span>Communauté de communes des Cévennes au Mont Lozère, 2026.</span><span>Maquette © Sylvain Caron 2026, proposition non contractuelle.</span></div>
+</footer>
+
+<script src="assets/traces.js"></script>
+<script src="assets/commun.js"></script>
+</body>
+</html>
