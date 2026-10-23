@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquette 2 Bancels : Communauté de communes des Cévennes au Mont Lozère</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Sylvain Caron">
+<meta name="copyright" content="Maquette (c) Sylvain Caron 2026. Proposition non contractuelle. Reproduction et réutilisation interdites sans accord écrit.">
+<!-- Maquette page d'accueil, refonte Symfony du site cevennes-mont-lozere.fr. (c) Sylvain Caron 2026. Proposition non contractuelle. -->
+<link rel="stylesheet" href="assets/barre.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papier:#f6f1e7; --papier-2:#efe7d8; --schiste:#26221e; --schiste-2:#3a342e; --gris:#625a50; --ligne:#ddd2bf;
+  --teal:#08a099; --teal-d:#06706b; --vert:#94c122; --vert-d:#4f6b0c; --ocre:#9a4f1e;
+  --display:'Fraunces',Georgia,serif; --body:'Figtree',system-ui,sans-serif;
+  --r:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--schiste);background:var(--papier);line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:var(--teal-d)}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;letter-spacing:-.01em;font-variation-settings:"opsz" 72}
+.wrap{width:min(1220px,100% - 40px);margin-inline:auto}
+.ico{width:1.15em;height:1.15em;flex:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.evitement{position:absolute;left:12px;top:-60px;background:var(--schiste);color:#fff;padding:.6rem 1rem;border-radius:6px;font-weight:700;z-index:300;text-decoration:none}
+.evitement:focus{top:12px}
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--ocre);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.4rem;font-weight:600;text-decoration:none;cursor:pointer;border:1.5px solid var(--schiste);border-radius:999px;transition:background .2s,color .2s,transform .2s;font-size:1rem;font-family:var(--body)}
+.btn-plein{background:var(--schiste);color:var(--papier)}
+.btn-plein:hover{background:var(--teal-d);border-color:var(--teal-d)}
+.btn-vide{color:var(--schiste)}
+.btn-vide:hover{background:var(--schiste);color:var(--papier)}
+.rubrique{font-family:var(--body);font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ocre);display:block;margin-bottom:.8rem}
+.filet{border:0;border-top:1.5px solid var(--schiste)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* titre du journal */
+.tete{border-bottom:1.5px solid var(--schiste)}
+.tete .ligne1{display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.86rem;color:var(--gris);padding:.7rem 0;border-bottom:1px solid var(--ligne);flex-wrap:wrap}
+.tete .ligne1 a{color:var(--schiste);text-decoration:none;display:inline-flex;gap:.4rem;align-items:center}
+.tete .ligne1 a:hover{color:var(--teal-d)}
+.tete .ligne1 .ico{width:15px;height:15px;color:var(--teal-d)}
+.tete .ligne1 .g,.tete .ligne1 .d{display:flex;gap:1.3rem;align-items:center;flex-wrap:wrap}
+.tete .ligne2{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;padding:1.1rem 0}
+.tete .logo img{height:76px;width:auto;mix-blend-mode:multiply}
+.tete .date{font-family:var(--display);font-style:italic;color:var(--gris);font-size:1rem}
+.tete .actions{display:flex;justify-content:flex-end;gap:.6rem}
+.rond{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--schiste);display:grid;place-items:center;color:var(--schiste);background:transparent;cursor:pointer;text-decoration:none;transition:background .2s,color .2s}
+.rond:hover{background:var(--schiste);color:var(--papier)}
+.rond .ico{width:20px;height:20px}
+.burger{display:none}
+.nav{border-top:1px solid var(--ligne)}
+.nav ul{list-style:none;display:flex;justify-content:center;gap:.2rem;flex-wrap:wrap}
+.nav a{display:block;padding:.85rem 1.1rem;text-decoration:none;color:var(--schiste);font-weight:600;font-size:.98rem;position:relative}
+.nav a::after{content:"";position:absolute;left:1.1rem;right:1.1rem;bottom:.55rem;height:2px;background:var(--ocre);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav a:hover::after{transform:scaleX(1)}
+
+/* une */
+.une{position:relative;padding:4rem 0 5rem;overflow:hidden}
+.une .courbes{position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none}
+.une .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center}
+.une h1{font-size:clamp(2.6rem,5.6vw,5rem);font-weight:600;line-height:1.04;letter-spacing:-.012em;word-spacing:.04em}
+.une h1 em{font-style:italic;color:var(--teal-d);font-weight:400}
+.une .sous{font-family:var(--display);font-size:1.25rem;color:var(--gris);margin:1.3rem 0 .4rem;font-style:italic}
+.une p.chapo{font-size:1.1rem;max-width:46ch;margin:.4rem 0 2rem}
+.une .boutons{display:flex;gap:.7rem;flex-wrap:wrap}
+.chiffres{display:flex;gap:2.2rem;margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid var(--ligne)}
+.chiffres b{display:block;font-family:var(--display);font-size:2.3rem;line-height:1;font-weight:600}
+.chiffres span{color:var(--gris);font-size:.92rem}
+.collage{position:relative;height:560px}
+.collage figure{position:absolute;background:#fff;padding:10px 10px 34px;box-shadow:0 24px 40px -22px rgba(38,34,30,.55);transition:transform .4s}
+.collage figure:hover{transform:rotate(0) translateY(-6px)!important;z-index:5}
+.collage img{width:100%;height:auto}
+.collage figcaption{position:absolute;left:12px;bottom:8px;font-family:var(--display);font-style:italic;font-size:.9rem;color:var(--gris)}
+.collage .c1{width:66%;left:0;top:30px;transform:rotate(-3deg);z-index:2}
+.collage .c2{width:34%;right:2%;top:0;transform:rotate(4deg);z-index:1}
+.collage .c3{width:52%;right:14%;bottom:10px;transform:rotate(-1.5deg);z-index:3}
+
+/* quotidien */
+.quotidien{background:var(--papier-2);padding:5rem 0;border-top:1.5px solid var(--schiste);border-bottom:1.5px solid var(--schiste)}
+.quotidien .entete-section{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:2.5rem}
+.quotidien h2{font-size:clamp(2.1rem,4vw,3.3rem)}
+.quotidien .entete-section p{color:var(--gris);max-width:48ch}
+.index{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column;column-gap:3rem}
+.index a{display:grid;grid-template-columns:64px 1fr auto;gap:1rem;align-items:center;padding:1.15rem .6rem;border-top:1px solid #cfc2aa;text-decoration:none;color:var(--schiste);transition:background .2s,padding .2s}
+.index a:hover{background:rgba(255,255,255,.55);padding-left:1rem}
+.index .n{font-family:var(--display);font-size:2rem;color:var(--ocre);font-weight:400;font-style:italic;line-height:1}
+.index b{font-family:var(--display);font-weight:600;font-size:1.3rem;display:block;line-height:1.2}
+.index small{display:block;color:var(--gris);font-size:.93rem;margin-top:.2rem}
+.index .ico{width:22px;height:22px;color:var(--teal-d);transition:transform .2s}
+.index a:hover .ico{transform:translateX(5px)}
+
+/* a la une */
+.journal{padding:5rem 0}
+.journal .tetiere{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;border-bottom:1.5px solid var(--schiste);padding-bottom:.8rem;margin-bottom:2.2rem;flex-wrap:wrap}
+.journal h2{font-size:clamp(2rem,3.6vw,3rem)}
+.journal .tetiere a{font-weight:600;text-decoration:none;color:var(--schiste);display:inline-flex;gap:.4rem;align-items:center}
+.journal .grille{display:grid;grid-template-columns:1.35fr 1fr .85fr;gap:2.4rem}
+.article{text-decoration:none;color:var(--schiste);display:block}
+.article .vis{background:#fff;border:1px solid var(--ligne);padding:12px;margin-bottom:1.1rem}
+.article .vis img{width:100%;height:auto}
+.article .theme{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d)}
+.article h3{font-size:1.65rem;margin:.4rem 0 .6rem;transition:color .2s}
+.article:hover h3{color:var(--teal-d)}
+.article p{color:var(--gris)}
+.article.second h3{font-size:1.35rem}
+.bref{border-left:1px solid var(--ligne);padding-left:2rem}
+.bref h3{font-family:var(--body);font-size:.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ocre);margin-bottom:.6rem}
+.bref article{padding:1rem 0;border-bottom:1px solid var(--ligne)}
+.bref article:last-child{border-bottom:0}
+.bref b{font-family:var(--display);font-size:1.12rem;display:block;margin-bottom:.25rem;line-height:1.25}
+.bref p{font-size:.95rem;color:var(--gris)}
+.bref a{font-weight:600;font-size:.92rem}
+
+/* vent des bancels */
+.vdb{background:var(--schiste);color:var(--papier);padding:5.5rem 0;position:relative;overflow:hidden}
+.vdb .courbes{position:absolute;inset:0;opacity:.13;pointer-events:none}
+.vdb .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.vdb .rubrique{color:var(--vert)}
+.vdb h2{font-size:clamp(2.4rem,5vw,4.2rem);font-style:italic;font-weight:400}
+.vdb p{color:#d8cfbf;margin:1.2rem 0 2rem;max-width:46ch;font-size:1.08rem}
+.vdb .btn{border-color:var(--papier);color:var(--papier)}
+.vdb .btn:hover{background:var(--papier);color:var(--schiste)}
+.vdb .btn-plein{background:var(--vert);border-color:var(--vert);color:var(--schiste)}
+.vdb .btn-plein:hover{background:#a8d33a;border-color:#a8d33a;color:var(--schiste)}
+.vdb .boutons{display:flex;gap:.7rem;flex-wrap:wrap}
+.pile{position:relative;height:500px}
+.pile a{position:absolute;width:44%;box-shadow:0 30px 50px -20px rgba(0,0,0,.7);transition:transform .4s}
+.pile a img{width:100%;height:auto}
+.pile .p1{left:28%;top:0;transform:rotate(2deg);z-index:3}
+.pile .p2{left:2%;top:50px;transform:rotate(-7deg);z-index:2}
+.pile .p3{right:0;top:70px;transform:rotate(8deg);z-index:1}
+.pile a:hover{transform:rotate(0) translateY(-10px);z-index:6}
+.pile .tag{position:absolute;left:50%;bottom:0;transform:translateX(-50%);background:var(--vert);color:var(--schiste);font-weight:700;padding:.45rem 1rem;border-radius:999px;font-size:.9rem;white-space:nowrap;z-index:7}
+
+/* territoire */
+.territoire{padding:5.5rem 0}
+.territoire .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem;align-items:start}
+.territoire h2{font-size:clamp(2rem,3.6vw,3rem)}
+.territoire .intro{color:var(--gris);margin:1rem 0 1.6rem}
+.communes{list-style:none;columns:2;column-gap:2rem;border-top:1.5px solid var(--schiste);padding-top:1rem}
+.communes li{break-inside:avoid}
+.communes a{display:block;padding:.32rem 0;color:var(--schiste);text-decoration:none;font-family:var(--display);font-size:1.05rem;border-bottom:1px dotted transparent;transition:color .15s}
+.communes li.active a,.communes a:hover{color:var(--teal-d);font-style:italic}
+.carte-cadre{position:relative;background:#fff;border:1px solid var(--ligne);padding:2rem;display:grid;grid-template-columns:1.2fr 1fr;gap:1.5rem;align-items:center}
+.carte-svg{width:100%;height:auto}
+.commune{fill:var(--papier-2);stroke:var(--schiste);stroke-width:2;cursor:pointer;transition:fill .2s}
+.commune.a-services{fill:#e2ecd0}
+.commune:hover,.commune.active{fill:var(--teal)}
+.commune:focus-visible{outline:none;fill:var(--teal);stroke-width:4}
+.fiche{font-size:.93rem}
+.fiche-nom{display:block;font-family:var(--display);font-size:1.45rem;font-weight:600;line-height:1.15;margin-bottom:.7rem}
+.fiche-liste{list-style:none;display:grid;gap:.55rem}
+.fiche-liste li{line-height:1.4;color:var(--gris)}
+.fiche-liste i{display:block;font-style:normal;font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ocre)}
+.fiche-vide{color:var(--gris);font-style:italic;font-family:var(--display)}
+.legende{grid-column:1/-1;display:flex;gap:1.2rem;font-size:.82rem;color:var(--gris);border-top:1px solid var(--ligne);padding-top:.9rem}
+.legende i{display:inline-block;width:14px;height:14px;border:1px solid var(--schiste);vertical-align:-2px;margin-right:.35rem}
+
+/* bande photo, hauteur fixe, largeur naturelle : aucune photo recadrée */
+.bande{padding:0 0 5rem}
+.bande .tetiere{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.bande h2{font-size:clamp(1.8rem,3vw,2.4rem)}
+.bande .tetiere a{font-weight:600;text-decoration:none;color:var(--schiste);display:inline-flex;gap:.4rem;align-items:center}
+.defile::before,.defile::after{content:"";flex:none;width:max(4px,calc((100vw - 1220px)/2 - 1rem))}
+.defile{display:flex;gap:1rem;overflow-x:auto;padding:0 0 1rem;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.defile figure{flex:none;scroll-snap-align:start}
+.defile img{height:340px;width:auto;max-width:none}
+.defile figcaption{font-family:var(--display);font-style:italic;color:var(--gris);font-size:.92rem;margin-top:.4rem}
+.bande .credit{font-size:.88rem;color:var(--gris);margin-top:.4rem}
+
+/* partenaires */
+.partenaires{border-top:1.5px solid var(--schiste);padding:2.6rem 0}
+.partenaires .wrap{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.partenaires h2{font-size:1.4rem;font-style:italic;font-weight:400}
+.logos{display:flex;gap:2.4rem;flex-wrap:wrap;align-items:center}
+.logos img{height:56px;width:auto;mix-blend-mode:multiply;filter:grayscale(1) contrast(1.1);opacity:.8;transition:filter .25s,opacity .25s}
+.logos a:hover img{filter:none;opacity:1}
+
+/* pied */
+.pied-site{background:var(--schiste);color:#d8cfbf;padding:4rem 0 2rem;font-size:.95rem}
+.pied-site .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2.5rem}
+.pied-site .nom{font-family:var(--display);font-size:1.6rem;color:var(--papier);line-height:1.15;margin-bottom:1rem}
+.pied-site h3{font-family:var(--body);color:var(--papier);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.9rem}
+.pied-site ul{list-style:none;display:grid;gap:.45rem}
+.pied-site a{color:#d8cfbf;text-decoration:none}
+.pied-site a:hover{color:#fff;text-decoration:underline}
+.pied-site .contact li{display:flex;gap:.55rem}
+.pied-site .contact .ico{width:17px;height:17px;color:var(--vert);margin-top:.25rem}
+.pied-site .bas{border-top:1px solid rgba(255,255,255,.14);margin-top:3rem;padding-top:1.3rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:#a99f8f}
+
+@media(max-width:1060px){
+  .une .wrap,.vdb .wrap,.territoire .wrap{grid-template-columns:1fr}
+  .collage{height:520px;max-width:640px}
+  .journal .grille{grid-template-columns:1fr 1fr}
+  .bref{grid-column:1/-1;border-left:0;padding-left:0;border-top:1.5px solid var(--schiste);padding-top:1rem;display:grid;grid-template-columns:repeat(2,1fr);column-gap:2rem}
+  .bref h3{grid-column:1/-1}
+  .pied-site .cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  .nav{display:none}
+  .nav.open{display:block}
+  .nav ul{flex-direction:column;align-items:stretch;padding:.5rem 0}
+  .burger{display:grid}
+  .tete .ligne2{grid-template-columns:auto 1fr}
+  .tete .date{display:none}
+  .quotidien .entete-section,.index{grid-template-columns:1fr}
+  .index{grid-template-rows:none;grid-auto-flow:row}
+  .carte-cadre{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  body{font-size:17px}
+  .tete .ligne1 .d,.tete .ligne1 .g a:first-child{display:none}
+  .tete .logo img{height:58px}
+  .une{padding:2.5rem 0 3.5rem}
+  .collage{height:380px}
+  .collage .c2 figcaption{display:none}
+  .chiffres{gap:1.4rem}
+  .chiffres b{font-size:1.8rem}
+  .journal .grille,.bref{grid-template-columns:1fr}
+  .pile{height:340px}
+  .communes{columns:1}
+  .carte-cadre{padding:1.2rem}
+  .defile img{height:240px}
+  .index a{grid-template-columns:48px 1fr auto}
+  .index .n{font-size:1.6rem}
+  .pied-site .cols{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<!--ICONES--><svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-fleche" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-loupe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-tel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+<symbol id="i-lieu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 3v8M16 3v8M7 18v3M17 18v3"/><circle cx="8" cy="14.5" r=".6" fill="currentColor"/><circle cx="16" cy="14.5" r=".6" fill="currentColor"/></symbol>
+<symbol id="i-mairie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 18v-7M9.5 18v-7M14.5 18v-7M19 18v-7M12 3l9 5H3z"/></symbol>
+<symbol id="i-enfant" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9 14.5s1 1.5 3 1.5 3-1.5 3-1.5"/><path d="M9 9.5h.01M15 9.5h.01"/><path d="M12 2.5c-1.5 1.5-1 3 .5 3"/></symbol>
+<symbol id="i-sante" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/><path d="M3.5 12H9l1-2 2 4.5 2-6 1.5 3.5h5"/></symbol>
+<symbol id="i-dechets" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></symbol>
+<symbol id="i-maison" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+<symbol id="i-livre" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+<symbol id="i-assos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+<symbol id="i-agenda" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol>
+<symbol id="i-emploi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/></symbol>
+<symbol id="i-feuille" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></symbol>
+<symbol id="i-montagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></symbol>
+<symbol id="i-horloge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-plan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="i-externe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+<symbol id="i-coeur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
+<symbol id="i-boussole" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.3-6.3 2.1 2.1-6.3z"/></symbol>
+<symbol id="i-texte" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></symbol>
+<symbol id="i-contraste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/></symbol>
+</svg>
+<!--/ICONES-->
+<!--BARRE--><div class="barre-maq" role="navigation" aria-label="Navigation entre les maquettes"><a class="retour" href="index.html">&#8592; <span class="mot">Voir les</span> 3 visuels</a><div class="onglets"><a href="maquette-1-panorama.html"><b>1</b><span>Panorama</span></a><a href="maquette-2-bancels.html" class="actif" aria-current="page"><b>2</b><span>Bancels</span></a><a href="maquette-3-guichet.html"><b>3</b><span>Guichet</span></a></div><div class="fleches"><a href="maquette-1-panorama.html" title="Maquette précédente" aria-label="Maquette précédente">&#8249;</a><a href="maquette-3-guichet.html" title="Maquette suivante" aria-label="Maquette suivante">&#8250;</a></div></div><!--/BARRE-->
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<header class="tete">
+  <div class="wrap">
+    <div class="ligne1">
+      <div class="g">
+        <a href="#"><svg class="ico"><use href="#i-lieu"/></svg>Route de Sauveplane, Le Collet de Dèze</a>
+        <a href="tel:0466650779"><svg class="ico"><use href="#i-tel"/></svg>04 66 65 07 79</a>
+      </div>
+      <div class="d">
+        <a href="#">France services</a>
+        <a href="#">Offres d'emploi</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="ligne2">
+      <span class="date" data-date>Vendredi 23 octobre 2026</span>
+      <a class="logo" href="#" aria-label="Accueil"><img src="assets/img/logo.png" alt="Communauté de communes des Cévennes au Mont Lozère" width="280" height="150"></a>
+      <div class="actions">
+        <a class="rond" href="#" aria-label="Rechercher"><svg class="ico"><use href="#i-loupe"/></svg></a>
+        <button class="rond burger" aria-expanded="false" aria-label="Ouvrir le menu"><svg class="ico"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Menu principal">
+    <ul>
+      <li><a href="#">La communauté</a></li>
+      <li><a href="#territoire">Territoire</a></li>
+      <li><a href="#quotidien">Services</a></li>
+      <li><a href="#">Environnement</a></li>
+      <li><a href="#actualites">Actualités</a></li>
+      <li><a href="#kiosque">Le Vent des Bancels</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="contenu">
+  <section class="une">
+    <svg class="courbes" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true" fill="none" stroke="#b9a98d" stroke-width="1.2">
+      <path d="M-20 520 C 200 470, 340 560, 560 500 S 900 380, 1120 430 S 1380 520, 1460 470"/>
+      <path d="M-20 560 C 220 510, 360 600, 580 540 S 920 420, 1140 470 S 1390 560, 1460 510"/>
+      <path d="M-20 600 C 240 550, 380 640, 600 580 S 940 460, 1160 510 S 1400 600, 1460 550"/>
+      <path d="M-20 640 C 260 590, 400 680, 620 620 S 960 500, 1180 550 S 1410 640, 1460 590"/>
+      <path d="M-20 480 C 180 430, 320 520, 540 460 S 880 340, 1100 390 S 1370 480, 1460 430"/>
+      <path d="M-20 440 C 160 390, 300 480, 520 420 S 860 300, 1080 350 S 1360 440, 1460 390"/>
+      <path d="M-20 400 C 140 350, 280 440, 500 380 S 840 260, 1060 310 S 1350 400, 1460 350"/>
+    </svg>
+    <div class="wrap">
+      <div class="reveal">
+        <span class="rubrique">Communauté de communes des Cévennes au Mont Lozère</span>
+        <h1>Vivre entre <em>Cévennes</em> et <em>Mont Lozère</em></h1>
+        <p class="sous">Dix-neuf communes, de la Vallée Française au Pont de Montvert.</p>
+        <p class="chapo">Démarches, petite enfance, santé, transports, déchets, logement : tout ce que la communauté de communes fait pour vous, au quotidien.</p>
+        <div class="boutons">
+          <a class="btn btn-plein" href="#quotidien">Trouver un service <svg class="ico"><use href="#i-fleche"/></svg></a>
+          <a class="btn btn-vide" href="#actualites">Lire les actualités</a>
+        </div>
+        <div class="chiffres"><div><b>19</b><span>communes</span></div><div><b>5 260</b><span>habitants</span></div><div><b>619</b><span>km²</span></div></div>
+      </div>
+      <div class="collage reveal" aria-label="Photographies du territoire par Émilie Reydon">
+        <figure class="c1"><img src="assets/img/galerie/brebis.jpg" alt="Troupeau de brebis dans une vallée verte" width="1200" height="797"><figcaption>Brebis</figcaption></figure>
+        <figure class="c2"><img src="assets/img/galerie/cascade-de-runes.jpg" alt="Cascade de Runes" width="637" height="960"><figcaption>Cascade de Runes</figcaption></figure>
+        <figure class="c3"><img src="assets/img/galerie/col-du-sapet.jpg" alt="Coucher de soleil au col du Sapet" width="1096" height="728"><figcaption>Col du Sapet</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="quotidien" id="quotidien">
+    <div class="wrap">
+      <div class="entete-section reveal">
+        <div><span class="rubrique">Au quotidien</span><h2>Ce que la communauté fait pour vous</h2></div>
+        <p>Les services les plus consultés, rangés par besoin. Chaque ligne mène à la page qui donne les horaires, les lieux et les contacts.</p>
+      </div>
+      <nav class="index" aria-label="Services du quotidien">
+        <a href="#" class="reveal"><span class="n">01</span><span><b>Faire mes démarches</b><small>France services : quatre espaces, huit lieux d'accueil</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">02</span><span><b>Faire garder mon enfant</b><small>5 micro-crèches, accueils de loisirs Méli Mélo</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">03</span><span><b>Me soigner</b><small>Deux maisons de santé, médecins, infirmiers, pharmacies</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">04</span><span><b>Me déplacer</b><small>Ligne 251 Mende, Florac, Alès, transport solidaire, covoiturage</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">05</span><span><b>Trier, jeter</b><small>Syndicat mixte de l'environnement Sud Lozère, déchèteries</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">06</span><span><b>Me loger, rénover</b><small>Clefs pour l'habitat, garantie Visale, logements vacants</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">07</span><span><b>Lire, emprunter</b><small>Le réseau des 14 médiathèques</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">08</span><span><b>Faire vivre mon association</b><small>Subventions, démarches en ligne, Guid'Asso</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">09</span><span><b>Construire, aménager</b><small>PLU, cartes communales, zones d'activité</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+        <a href="#" class="reveal"><span class="n">10</span><span><b>Travailler ici</b><small>Offres d'emploi de la communauté et du territoire</small></span><svg class="ico"><use href="#i-fleche"/></svg></a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="journal" id="actualites">
+    <div class="wrap">
+      <div class="tetiere reveal"><h2>À la une</h2><a href="#">Toutes les actualités <svg class="ico"><use href="#i-fleche"/></svg></a></div>
+      <div class="grille">
+        <a class="article reveal" href="#">
+          <div class="vis"><img src="assets/img/actus/transport-solidaire.png" alt="Transport solidaire" loading="lazy"></div>
+          <span class="theme">Se déplacer</span>
+          <h3>Transport solidaire : le réseau cherche des chauffeurs bénévoles</h3>
+          <p>Le transport solidaire du sud-est Lozère conduit les habitants à leurs rendez-vous médicaux. Il a besoin de nouveaux bénévoles.</p>
+        </a>
+        <a class="article second reveal" href="#">
+          <div class="vis"><img src="assets/img/actus/clefs-habitat.png" alt="Clefs pour l'habitat en Lozère" loading="lazy"></div>
+          <span class="theme">Logement</span>
+          <h3>Clefs pour l'habitat en Lozère : les aides pour rénover</h3>
+          <p>Permanences au Collet de Dèze, à Saint Étienne Vallée Française, à Florac et à Villefort.</p>
+        </a>
+        <aside class="bref reveal" aria-label="En bref">
+          <h3>En bref</h3>
+          <article><b>Conseil communautaire</b><p>Séances 2026 : 19 janvier, 5 mars, 22 octobre.</p><a href="#">Délibérations</a></article>
+          <article><b>Ligne de bus 251</b><p>Mende, Florac, Alès toute l'année les mardis et jeudis. Ticket à 2 €.</p><a href="#">Fiche horaire</a></article>
+          <article><b>Subventions aux associations</b><p>Dossiers CERFA à envoyer avant le 31 janvier.</p><a href="#">La démarche</a></article>
+          <article><b>Déchets</b><p>Collecte assurée par le Syndicat mixte de l'environnement Sud Lozère depuis 2024.</p><a href="#">En savoir plus</a></article>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="vdb" id="kiosque">
+    <svg class="courbes" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true" fill="none" stroke="#f6f1e7" stroke-width="1.2">
+      <path d="M-20 200 C 200 150, 340 240, 560 180 S 900 60, 1120 110 S 1380 200, 1460 150"/>
+      <path d="M-20 240 C 220 190, 360 280, 580 220 S 920 100, 1140 150 S 1390 240, 1460 190"/>
+      <path d="M-20 280 C 240 230, 380 320, 600 260 S 940 140, 1160 190 S 1400 280, 1460 230"/>
+      <path d="M-20 320 C 260 270, 400 360, 620 300 S 960 180, 1180 230 S 1410 320, 1460 270"/>
+      <path d="M-20 360 C 280 310, 420 400, 640 340 S 980 220, 1200 270 S 1420 360, 1460 310"/>
+    </svg>
+    <div class="wrap">
+      <div class="reveal">
+        <span class="rubrique">Le kiosque</span>
+        <h2>Le Vent des Bancels</h2>
+        <p>Le journal du territoire, à feuilleter en ligne ou à télécharger. Les numéros sont conservés depuis le n°94, avec le bulletin communautaire.</p>
+        <div class="boutons">
+          <a class="btn btn-plein" href="#">Lire le n°131 <svg class="ico"><use href="#i-fleche"/></svg></a>
+          <a class="btn" href="#">Tous les numéros</a>
+        </div>
+      </div>
+      <div class="pile reveal">
+        <a class="p2" href="#"><img src="assets/img/kiosque/vdb-130.png" alt="Le Vent des Bancels n°130" loading="lazy"></a>
+        <a class="p3" href="#"><img src="assets/img/kiosque/bulletin-1.png" alt="Bulletin communautaire n°1" loading="lazy"></a>
+        <a class="p1" href="#"><img src="assets/img/kiosque/vdb-131.png" alt="Le Vent des Bancels n°131" loading="lazy"></a>
+        <span class="tag">Dernier numéro : n°131</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="territoire" id="territoire" data-territoire>
+    <div class="wrap">
+      <div class="reveal">
+        <span class="rubrique">Le territoire</span>
+        <h2>Dix-neuf communes</h2>
+        <p class="intro">Choisissez une commune pour voir ce qu'elle accueille : France services, micro-crèche, maison de santé, médiathèque, bureau d'information touristique.</p>
+        <ul class="communes">
+          <li data-commune="Bassurels"><a href="#">Bassurels</a></li><li data-commune="Gabriac"><a href="#">Gabriac</a></li><li data-commune="Le Collet de Dèze"><a href="#">Le Collet de Dèze</a></li><li data-commune="Le Pompidou"><a href="#">Le Pompidou</a></li><li data-commune="Moissac Vallée Française"><a href="#">Moissac Vallée Française</a></li><li data-commune="Molezon"><a href="#">Molezon</a></li><li data-commune="Pont de Montvert - Sud Mont Lozère"><a href="#">Pont de Montvert, Sud Mont Lozère</a></li><li data-commune="Saint André de Lancize"><a href="#">Saint André de Lancize</a></li><li data-commune="Saint Etienne Vallée Française"><a href="#">Saint Étienne Vallée Française</a></li><li data-commune="Saint Germain de Calberte"><a href="#">Saint Germain de Calberte</a></li><li data-commune="Saint Hilaire de Lavit"><a href="#">Saint Hilaire de Lavit</a></li><li data-commune="Saint Julien des Points"><a href="#">Saint Julien des Points</a></li><li data-commune="Saint Martin de Boubaux"><a href="#">Saint Martin de Boubaux</a></li><li data-commune="Saint Martin de Lansuscle"><a href="#">Saint Martin de Lansuscle</a></li><li data-commune="Saint Michel de Dèze"><a href="#">Saint Michel de Dèze</a></li><li data-commune="Saint Privat de Vallongue"><a href="#">Saint Privat de Vallongue</a></li><li data-commune="Sainte Croix Vallée Française"><a href="#">Sainte Croix Vallée Française</a></li><li data-commune="Ventalon en Cévennes"><a href="#">Ventalon en Cévennes</a></li><li data-commune="Vialas"><a href="#">Vialas</a></li>
+        </ul>
+      </div>
+      <div class="carte-cadre reveal">
+        <div data-carte="Pont de Montvert - Sud Mont Lozère"></div>
+        <div class="fiche" data-fiche aria-live="polite"></div>
+        <p class="legende"><span><i style="background:#e2ecd0"></i>Commune avec un service de proximité</span><span><i style="background:var(--teal)"></i>Commune choisie</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bande" aria-labelledby="t-images">
+    <div class="wrap tetiere reveal"><h2 id="t-images">Le territoire en images</h2><a href="#">Accéder aux galeries <svg class="ico"><use href="#i-fleche"/></svg></a></div>
+    <div class="defile" tabindex="0" aria-label="Photographies, faire défiler horizontalement">
+      <figure><img src="assets/img/galerie/fraissinet.jpg" alt="Hameau de Fraissinet dans la brume" width="1200" height="952" loading="lazy"><figcaption>Fraissinet</figcaption></figure>
+      <figure><img src="assets/img/galerie/col-de-finiels.jpg" alt="Brumes bleues au col de Finiels" width="478" height="720" loading="lazy"><figcaption>Col de Finiels</figcaption></figure>
+      <figure><img src="assets/img/galerie/automne.jpg" alt="Forêt aux couleurs d'automne" width="720" height="478" loading="lazy"><figcaption>Automne</figcaption></figure>
+      <figure><img src="assets/img/galerie/menhir.jpg" alt="Menhir sur le plateau au crépuscule" width="720" height="560" loading="lazy"><figcaption>Menhir</figcaption></figure>
+      <figure><img src="assets/img/galerie/riviere.jpg" alt="Rivière aux eaux claires" width="508" height="720" loading="lazy"><figcaption>Rivière</figcaption></figure>
+      <figure><img src="assets/img/galerie/fayard.jpg" alt="Hêtre centenaire" width="1200" height="797" loading="lazy"><figcaption>Fayard</figcaption></figure>
+      <figure><img src="assets/img/galerie/cepe.jpg" alt="Cèpe dans la mousse" width="720" height="656" loading="lazy"><figcaption>Cèpe</figcaption></figure>
+      <figure><img src="assets/img/galerie/prairie-pont.jpg" alt="Prairie fleurie et pont de pierre" width="720" height="478" loading="lazy"><figcaption>Prairie</figcaption></figure>
+    </div>
+    <p class="wrap credit">Photographies d'Émilie Reydon.</p>
+  </section>
+
+  <section class="partenaires" aria-labelledby="t-part">
+    <div class="wrap">
+      <h2 id="t-part">À voir aussi</h2>
+      <div class="logos">
+        <a href="#" title="PETR Sud Lozère"><img src="assets/img/partenaires/petr-sud-lozere.jpg" alt="PETR Sud Lozère" loading="lazy"></a>
+        <a href="#" title="Lozère Nouvelle Vie"><img src="assets/img/partenaires/lozere-nouvelle-vie.png" alt="Lozère Nouvelle Vie" loading="lazy"></a>
+        <a href="#" title="Département de la Lozère"><img src="assets/img/partenaires/departement-lozere.jpg" alt="Lozère, le Département" loading="lazy"></a>
+        <a href="#" title="Office de tourisme"><img src="assets/img/partenaires/office-tourisme.png" alt="Office de tourisme des Cévennes au Mont Lozère" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pied-site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="nom">Communauté de communes des Cévennes au Mont Lozère</p>
+        <ul class="contact">
+          <li><svg class="ico"><use href="#i-lieu"/></svg>Route de Sauveplane, 48160 Le Collet de Dèze</li>
+          <li><svg class="ico"><use href="#i-tel"/></svg><a href="tel:0466650779">04 66 65 07 79</a></li>
+          <li><svg class="ico"><use href="#i-mail"/></svg><a href="#">contact@cevennes-mont-lozere.fr</a></li>
+        </ul>
+      </div>
+      <div><h3>La communauté</h3><ul><li><a href="#">Fonctionnement et élus</a></li><li><a href="#">Actes administratifs</a></li><li><a href="#">Enquêtes publiques</a></li><li><a href="#">Urbanisme</a></li><li><a href="#">Offres d'emploi</a></li></ul></div>
+      <div><h3>Services</h3><ul><li><a href="#">France services</a></li><li><a href="#">Famille</a></li><li><a href="#">Santé</a></li><li><a href="#">Se déplacer</a></li><li><a href="#">Gestion des déchets</a></li></ul></div>
+      <div><h3>Informations</h3><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Accessibilité</a></li><li><a href="#">Plan du site</a></li><li><a href="#">Gestion des cookies</a></li><li><a href="#">Le Vent des Bancels</a></li></ul></div>
+    </div>
+    <div class="bas"><span>Communauté de communes des Cévennes au Mont Lozère, 2026.</span><span>Maquette © Sylvain Caron 2026, proposition non contractuelle.</span></div>
+  </div>
+</footer>
+
+<script src="assets/traces.js"></script>
+<script src="assets/commun.js"></script>
+<script>
+(function(){var d=document.querySelector('[data-date]');if(!d)return;try{var t=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});d.textContent=t.charAt(0).toUpperCase()+t.slice(1);}catch(e){}})();
+</script>
+</body>
+</html>
